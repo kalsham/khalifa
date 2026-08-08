@@ -1,0 +1,598 @@
+:root {
+  --ink: #0b0d0c;
+  --panel: #14171a;
+  --panel-2: #1b1f22;
+  --line: #272c2f;
+  --tally: #e8402c;
+  --waveform: #8fe3c7;
+  --timecode: #d9a441;
+  --text: #ece9e2;
+  --text-dim: #9aa1a0;
+
+  --font-display: "Fraunces", ui-serif, serif;
+  --font-body: "IBM Plex Sans", system-ui, -apple-system, sans-serif;
+  --font-mono: "IBM Plex Mono", "SFMono-Regular", Menlo, monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--ink);
+  color: var(--text);
+  font-family: var(--font-body);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -3rem;
+  background: var(--tally);
+  color: var(--ink);
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  z-index: 100;
+  transition: top 0.15s ease;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+*:focus-visible {
+  outline: 2px solid var(--tally);
+  outline-offset: 2px;
+}
+
+/* ---------- shared ---------- */
+
+.tally-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--tally);
+  box-shadow: 0 0 8px rgba(232, 64, 44, 0.7);
+  flex-shrink: 0;
+  animation: blink 2.4s steps(1, end) infinite;
+}
+
+@keyframes blink {
+  0%, 45% { opacity: 1; }
+  50%, 95% { opacity: 0.25; }
+  100% { opacity: 1; }
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin: 0 0 1.25rem;
+}
+
+.eyebrow--dark {
+  color: var(--tally);
+}
+
+.btn {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  padding: 0.75rem 1.3rem;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease, transform 0.1s ease;
+  white-space: nowrap;
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn--primary {
+  background: var(--tally);
+  color: #150a08;
+  font-weight: 600;
+}
+
+.btn--primary:hover {
+  background: #ff5d47;
+}
+
+.btn--ghost {
+  background: transparent;
+  border-color: var(--line);
+  color: var(--text);
+}
+
+.btn--ghost:hover {
+  border-color: var(--tally);
+  color: var(--tally);
+}
+
+.btn--small {
+  padding: 0.55rem 1rem;
+  font-size: 0.78rem;
+}
+
+/* ---------- nav ---------- */
+
+.site-nav {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.1rem clamp(1.25rem, 4vw, 3rem);
+  border-bottom: 1px solid var(--line);
+  background: rgba(11, 13, 12, 0.85);
+  backdrop-filter: blur(8px);
+}
+
+.wordmark {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 0.9rem;
+  letter-spacing: 0.14em;
+  text-decoration: none;
+  color: var(--text);
+}
+
+/* ---------- hero ---------- */
+
+.hero {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: clamp(3rem, 8vw, 5.5rem) clamp(1.25rem, 4vw, 3rem) 3rem;
+}
+
+.hero-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(2.6rem, 6.4vw, 5rem);
+  line-height: 1.03;
+  letter-spacing: -0.01em;
+  margin: 0 0 1.25rem;
+}
+
+.hero-title em {
+  font-style: italic;
+  font-weight: 500;
+  color: var(--timecode);
+}
+
+.hero-sub {
+  font-size: 1.08rem;
+  line-height: 1.65;
+  color: var(--text-dim);
+  max-width: 56ch;
+  margin: 0 0 2.75rem;
+}
+
+/* ---------- timeline mock ---------- */
+
+.timeline-mock {
+  position: relative;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 1.5rem 1.5rem 1.75rem;
+}
+
+.timeline-row {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  padding-block: 0.55rem;
+}
+
+.track-label {
+  flex-shrink: 0;
+  width: 26px;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.05em;
+  color: var(--text-dim);
+}
+
+.clip {
+  height: 36px;
+  border-radius: 4px;
+}
+
+.clip--raw {
+  flex: 1;
+  background: linear-gradient(90deg, #34302a, #453f33, #34302a 65%, #3b3629);
+  background-size: 220% 100%;
+}
+
+.clip-group {
+  flex: 1;
+  display: flex;
+  gap: 6px;
+  min-width: 0;
+}
+
+.clip-group .clip {
+  background: linear-gradient(135deg, rgba(143, 227, 199, 0.22), rgba(143, 227, 199, 0.06));
+  border: 1px solid rgba(143, 227, 199, 0.32);
+}
+
+.waveform {
+  flex: 1;
+  height: 32px;
+  overflow: visible;
+}
+
+.waveform rect {
+  fill: var(--waveform);
+  opacity: 0.75;
+}
+
+.marker-lane {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.9rem;
+  height: 0;
+}
+
+.marker-lane .marker-spacer {
+  width: 26px;
+  flex-shrink: 0;
+}
+
+.marker-lane .marker-track {
+  position: relative;
+  flex: 1;
+  height: 0;
+}
+
+.cut-marker {
+  position: absolute;
+  top: -6px;
+  transform: translate(-50%, -100%) scale(0.6);
+  font-size: 0.7rem;
+  color: var(--tally);
+  opacity: 0;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.timeline-mock.in-view .cut-marker {
+  opacity: 1;
+  transform: translate(-50%, -100%) scale(1);
+}
+
+.playhead {
+  position: absolute;
+  top: 1.5rem;
+  bottom: 1.75rem;
+  left: 26px;
+  width: 2px;
+  background: var(--timecode);
+  box-shadow: 0 0 6px rgba(217, 164, 65, 0.7);
+  animation: sweep 9s linear infinite;
+}
+
+@keyframes sweep {
+  0% { left: calc(26px + 0.9rem); }
+  100% { left: calc(100% - 8px); }
+}
+
+.timeline-caption {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  margin: 1rem 0 2.5rem;
+  flex-wrap: wrap;
+}
+
+.timecode {
+  color: var(--timecode);
+}
+
+.caption-status {
+  color: var(--text-dim);
+  transition: opacity 0.3s ease;
+}
+
+/* ---------- waitlist form ---------- */
+
+.field-row {
+  display: flex;
+  gap: 0.6rem;
+}
+
+.email-input {
+  flex: 1;
+  min-width: 0;
+  background: var(--panel-2);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 0.85rem 1rem;
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+}
+
+.email-input::placeholder {
+  color: var(--text-dim);
+}
+
+.email-input:focus {
+  border-color: var(--tally);
+}
+
+.form-note {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 0.65rem 0 0;
+  font-size: 0.8rem;
+  color: var(--text-dim);
+  flex-wrap: wrap;
+}
+
+.form-message {
+  color: var(--waveform);
+}
+
+.form-message[data-state="error"] {
+  color: var(--tally);
+}
+
+.waitlist-count {
+  font-family: var(--font-mono);
+  white-space: nowrap;
+}
+
+/* ---------- pipeline / EDL ---------- */
+
+.pipeline,
+.tracks,
+.cta-band {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 4rem clamp(1.25rem, 4vw, 3rem);
+  border-top: 1px solid var(--line);
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(1.8rem, 3.4vw, 2.5rem);
+  margin: 0 0 0.75rem;
+}
+
+.section-sub {
+  color: var(--text-dim);
+  max-width: 60ch;
+  margin: 0 0 2.75rem;
+  line-height: 1.6;
+}
+
+.edl {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--line);
+}
+
+.edl-row {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 1.5rem;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--line);
+  align-items: baseline;
+}
+
+.edl-stage {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--timecode);
+  font-size: 0.95rem;
+}
+
+.edl-desc {
+  margin: 0;
+  color: var(--text);
+  line-height: 1.65;
+}
+
+/* ---------- tracks (who it's for) ---------- */
+
+.track-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.track-item {
+  display: flex;
+  gap: 1.25rem;
+  align-items: flex-start;
+  padding: 1.35rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.track-item:first-child {
+  border-top: 1px solid var(--line);
+}
+
+.track-chip {
+  flex-shrink: 0;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.3rem 0.55rem;
+  border-radius: 4px;
+  margin-top: 0.15rem;
+}
+
+.track-chip--v {
+  background: rgba(143, 227, 199, 0.1);
+  color: var(--waveform);
+  border: 1px solid rgba(143, 227, 199, 0.35);
+}
+
+.track-chip--a {
+  background: rgba(217, 164, 65, 0.1);
+  color: var(--timecode);
+  border: 1px solid rgba(217, 164, 65, 0.35);
+}
+
+.track-item h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.15rem;
+  margin: 0 0 0.3rem;
+}
+
+.track-item p {
+  margin: 0;
+  color: var(--text-dim);
+  line-height: 1.6;
+}
+
+/* ---------- final CTA ---------- */
+
+.cta-band {
+  text-align: center;
+  padding-block: 5rem;
+}
+
+.cta-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(2rem, 4.4vw, 3rem);
+  max-width: 22ch;
+  margin: 0 auto 1rem;
+}
+
+.cta-sub {
+  color: var(--text-dim);
+  max-width: 48ch;
+  margin: 0 auto 2.5rem;
+  line-height: 1.6;
+}
+
+.waitlist-form--band {
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.waitlist-form--band .form-note {
+  justify-content: center;
+  gap: 1.25rem;
+}
+
+/* ---------- footer ---------- */
+
+.site-footer {
+  text-align: center;
+  padding: 3rem 1.5rem;
+  border-top: 1px solid var(--line);
+  color: var(--text-dim);
+  font-size: 0.85rem;
+}
+
+.wordmark--footer {
+  justify-content: center;
+  margin-bottom: 0.75rem;
+  opacity: 0.9;
+}
+
+.footer-year {
+  opacity: 0.6;
+  margin-top: 0.4rem;
+}
+
+/* ---------- responsive ---------- */
+
+@media (max-width: 560px) {
+  .field-row {
+    flex-direction: column;
+  }
+
+  .btn--primary {
+    width: 100%;
+  }
+
+  .edl-row {
+    grid-template-columns: 1fr;
+    gap: 0.4rem;
+  }
+
+  .timeline-caption {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.3rem;
+  }
+}
+
+/* ---------- motion ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .tally-dot {
+    animation: none;
+    opacity: 1;
+  }
+
+  .playhead {
+    animation: none;
+    left: 40%;
+  }
+
+  .cut-marker {
+    transition: none;
+  }
+}

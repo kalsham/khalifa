@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Scenepilot — raw footage in, a finished film out</title>
+<meta name="description" content="Scenepilot is an AI editor that logs, cuts, grades, and mixes your raw footage into a finished, ready-to-post video. Join the pilot list.">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<a class="skip-link" href="#waitlist">Skip to waitlist</a>
+
+<header class="site-nav">
+  <a class="wordmark" href="#top">
+    <span class="tally-dot" aria-hidden="true"></span>
+    SCENEPILOT
+  </a>
+  <a class="btn btn--ghost btn--small" href="#waitlist">Join the pilot list</a>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="hero-copy">
+      <p class="eyebrow"><span class="tally-dot" aria-hidden="true"></span>REC · AI POST&#8209;PRODUCTION</p>
+      <h1 class="hero-title">Raw footage in.<br>A <em>finished film</em> out.</h1>
+      <p class="hero-sub">Scenepilot watches your footage the way an editor would: finds the take, cuts the dead air, syncs the beat, and hands you a cut that's ready to post. You point the camera. It sits in the edit bay.</p>
+    </div>
+
+    <div class="timeline-mock" id="timelineMock">
+      <div class="timeline-row timeline-row--raw">
+        <span class="track-label">RAW</span>
+        <div class="clip clip--raw"></div>
+      </div>
+      <div class="timeline-row timeline-row--cut">
+        <span class="track-label">V1</span>
+        <div class="clip-group" id="clipGroup"></div>
+      </div>
+      <div class="marker-lane" id="markerLane" aria-hidden="true"></div>
+      <div class="timeline-row timeline-row--wave">
+        <span class="track-label">A1</span>
+        <svg class="waveform" id="waveform" viewBox="0 0 400 32" preserveAspectRatio="none" aria-hidden="true"></svg>
+      </div>
+      <div class="playhead" aria-hidden="true"></div>
+    </div>
+
+    <p class="timeline-caption">
+      <span class="timecode" id="timecode">00:00:14:02</span>
+      <span class="caption-status" id="captionStatus">silence trimmed — 1.8s removed</span>
+    </p>
+
+    <form class="waitlist-form" id="heroWaitlist" novalidate>
+      <div class="field-row">
+        <label class="sr-only" for="heroEmail">Email address</label>
+        <input class="email-input" id="heroEmail" name="email" type="email" placeholder="you@yourstudio.com" autocomplete="email" required>
+        <button class="btn btn--primary" type="submit">Join the pilot list</button>
+      </div>
+      <p class="form-note">
+        <span class="form-message" data-role="message" aria-live="polite"></span>
+        <span class="waitlist-count" data-role="count">Loading the list…</span>
+      </p>
+    </form>
+  </section>
+
+  <section class="pipeline" id="how">
+    <p class="eyebrow eyebrow--dark">THE EDL</p>
+    <h2 class="section-title">How it edits</h2>
+    <p class="section-sub">Same pipeline a human editor runs — Scenepilot just runs it while you're already on to the next shoot.</p>
+
+    <ol class="edl">
+      <li class="edl-row">
+        <span class="edl-stage">LOG</span>
+        <p class="edl-desc">Drop in your raw clips. Scenepilot logs every take — labels the keepers, flags the flubs, finds the room tone.</p>
+      </li>
+      <li class="edl-row">
+        <span class="edl-stage">CUT</span>
+        <p class="edl-desc">It assembles a rough cut paced for where it's going: punchy for a Reel, patient for a sit&#8209;down interview.</p>
+      </li>
+      <li class="edl-row">
+        <span class="edl-stage">GRADE</span>
+        <p class="edl-desc">Exposure, white balance, and audio levels even out across every clip, so nothing jumps jarringly bright or loud.</p>
+      </li>
+      <li class="edl-row">
+        <span class="edl-stage">MIX</span>
+        <p class="edl-desc">Music ducks under dialogue, captions land in sync, and the export drops straight into your upload queue.</p>
+      </li>
+    </ol>
+  </section>
+
+  <section class="tracks" id="who">
+    <p class="eyebrow eyebrow--dark">ON THE TIMELINE</p>
+    <h2 class="section-title">Built for anyone who shoots more than they edit</h2>
+
+    <div class="track-list">
+      <div class="track-item">
+        <span class="track-chip track-chip--v">V1</span>
+        <div>
+          <h3>Solo creators</h3>
+          <p>One person, one camera, and a backlog of footage you keep meaning to get to.</p>
+        </div>
+      </div>
+      <div class="track-item">
+        <span class="track-chip track-chip--v">V2</span>
+        <div>
+          <h3>Social teams</h3>
+          <p>Turn a single shoot into a week of cutdowns without hiring another editor.</p>
+        </div>
+      </div>
+      <div class="track-item">
+        <span class="track-chip track-chip--a">A1</span>
+        <div>
+          <h3>Agencies &amp; studios</h3>
+          <p>Ship client-ready cuts in hours so your senior editors stay on the work that needs their eye.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-band" id="waitlist">
+    <h2 class="cta-title">Your next edit starts the moment you stop filming.</h2>
+    <p class="cta-sub">We're onboarding editors in small batches, earliest sign-ups first. No spam — one email when your seat opens.</p>
+
+    <form class="waitlist-form waitlist-form--band" id="bandWaitlist" novalidate>
+      <div class="field-row">
+        <label class="sr-only" for="bandEmail">Email address</label>
+        <input class="email-input" id="bandEmail" name="email" type="email" placeholder="you@yourstudio.com" autocomplete="email" required>
+        <button class="btn btn--primary" type="submit">Join the pilot list</button>
+      </div>
+      <p class="form-note">
+        <span class="form-message" data-role="message" aria-live="polite"></span>
+        <span class="waitlist-count" data-role="count">Loading the list…</span>
+      </p>
+    </form>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <span class="wordmark wordmark--footer"><span class="tally-dot" aria-hidden="true"></span>SCENEPILOT</span>
+  <p>Not yet available — this is the pilot list. The product's still in the edit bay.</p>
+  <p class="footer-year">&copy; 2026</p>
+</footer>
+
+<script src="/script.js"></script>
+</body>
+</html>
