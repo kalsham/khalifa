@@ -355,7 +355,7 @@ section { padding: 88px 0; }
 .roastline-pins { position: relative; height: 0; }
 .pin {
   position: absolute;
-  top: -46px;
+  top: -40px;
   transform: translateX(-50%);
   display: flex;
   flex-direction: column;
@@ -371,14 +371,24 @@ section { padding: 88px 0; }
   border-radius: 50%;
   border: 3px solid var(--ink-900);
   box-shadow: 0 0 0 2px currentColor;
-  margin-bottom: 10px;
   transition: transform var(--transition-base);
 }
 .pin:hover .dot, .pin:focus-visible .dot { transform: scale(1.2); }
-.pin .pin-label { font-size: 12px; font-weight: 600; white-space: nowrap; unicode-bidi: plaintext; }
+/* the roaster name lives in the hover/focus tooltip (.pin-detail) rather than
+   as a permanent label — with 8+ roasters on the line, always-on name labels
+   collide with each other and with the Light/City/Full City/French legend */
+.pin .pin-label {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
 .pin-detail {
   position: absolute;
-  top: 24px;
+  top: 34px;
   transform: translateX(-50%);
   width: 220px;
   background: var(--ink-800);
