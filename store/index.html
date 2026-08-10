@@ -1,0 +1,381 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Souk Al-Bunn — Specialty Coffee Beans, Curated From UAE Roasters</title>
+<meta name="description" content="One store for beans from a dozen independent UAE roasters — compared by roast, origin and notes, delivered across the Emirates.">
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,500&family=Work+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Noto+Kufi+Arabic:wght@500;600;700&family=Cairo:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="wrap">
+    <a class="brand" href="#top">
+      <span data-en="Souk Al-" data-ar="سوق ">Souk Al-</span><em data-en="Bunn" data-ar="البُن">Bunn</em>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#roastline" data-en="The Roasts" data-ar="الأصناف">The Roasts</a></li>
+      <li><a href="#beans" data-en="Shop" data-ar="المتجر">Shop</a></li>
+      <li><a href="#ritual" data-en="Brew Guide" data-ar="دليل التحضير">Brew Guide</a></li>
+      <li><a href="#why" data-en="Why Us" data-ar="لماذا نحن">Why Us</a></li>
+    </ul>
+    <div class="nav-right">
+      <button class="lang-toggle" id="langToggle" aria-label="Switch language">EN / <span dir="rtl">عربي</span></button>
+      <button class="bag-toggle" id="bagToggle" aria-haspopup="true" aria-expanded="false">
+        <span data-en="Bag" data-ar="السلة">Bag</span><span class="bag-count" id="bagCount">0</span>
+      </button>
+      <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">&#9776;</button>
+    </div>
+  </div>
+  <div class="roast-rule"></div>
+</nav>
+
+<main id="top">
+
+  <!-- ================= HERO ================= -->
+  <header class="hero">
+    <div class="wrap">
+      <div class="hero-copy">
+        <span class="eyebrow" data-en="One store, a dozen roasters" data-ar="متجر واحد، اثنا عشر محمصة">One store, a dozen roasters</span>
+        <h1>
+          <span data-en="Every roaster." data-ar="كل محمصة.">Every roaster.</span><br>
+          <em data-en="One shelf." data-ar="رفّ واحد.">One shelf.</em>
+        </h1>
+        <p class="lede" data-en="We buy directly from independent roasters across the UAE and put their beans side by side — by roast, origin and price — so you can compare instead of guessing." data-ar="نشتري مباشرة من محامص مستقلة في جميع أنحاء الإمارات ونعرض حبوبها جنبًا إلى جنب — حسب التحميص والمنشأ والسعر — لتقارن بدلاً من التخمين.">We buy directly from independent roasters across the UAE and put their beans side by side — by roast, origin and price — so you can compare instead of guessing.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#beans" data-en="Shop Beans" data-ar="تسوّق الحبوب">Shop Beans</a>
+          <a class="btn btn-ghost" href="#roastline" data-en="Compare Roasts" data-ar="قارن التحميص">Compare Roasts</a>
+        </div>
+        <div class="hero-timer">
+          <span data-en="12+ ROASTERS LISTED" data-ar="+12 محمصة مُدرجة">12+ ROASTERS LISTED</span>
+          <span class="roast-rule" aria-hidden="true"></span>
+          <span data-en="UAE-WIDE DELIVERY" data-ar="توصيل لكل الإمارات">UAE-WIDE DELIVERY</span>
+        </div>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <div class="bean-mark">
+          <span class="stamp" data-en="Curated Batch · 2026" data-ar="دفعة مُنتقاة · 2026">Curated Batch · 2026</span>
+          <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="60" cy="60" rx="40" ry="52" stroke="#C9A66B" stroke-width="2"/>
+            <path d="M60 12 C 46 40, 46 80, 60 108" stroke="#C4602A" stroke-width="2.5" stroke-linecap="round"/>
+          </svg>
+          <div class="mark-foot">
+            <span><span data-en="Origin" data-ar="المنشأ">Origin</span><br><strong data-en="12+ Roasters" data-ar="+12 محمصة">12+ Roasters</strong></span>
+            <span><span data-en="Delivery" data-ar="التوصيل">Delivery</span><br><strong data-en="UAE-Wide" data-ar="كل الإمارات">UAE-Wide</strong></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= ROAST LINE ================= -->
+  <section id="roastline" class="on-paper">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow" data-en="The roast line" data-ar="خط التحميص">The roast line</span>
+        <h2 data-en="Every bag we list sits somewhere on the same spectrum." data-ar="كل كيس نعرضه يقع في مكان ما على نفس الطيف.">Every bag we list sits somewhere on the same spectrum.</h2>
+        <p data-en="Roast degree is the single biggest lever on flavor. Instead of a wall of brand names, we place every roaster's bean on the same line — so you can pick by taste, not by logo." data-ar="درجة التحميص هي العامل الأكبر في تحديد النكهة. بدلاً من قائمة طويلة بأسماء العلامات التجارية، نضع حبوب كل محمصة على نفس الخط — لتختار حسب الطعم لا حسب الاسم.">Roast degree is the single biggest lever on flavor. Instead of a wall of brand names, we place every roaster's bean on the same line — so you can pick by taste, not by logo.</p>
+      </div>
+      <div class="roastline">
+        <div class="roastline-track"></div>
+        <div class="roastline-labels">
+          <span data-en="Light" data-ar="فاتح">Light</span><span data-en="City" data-ar="متوسط">City</span><span data-en="Full City" data-ar="متوسط داكن">Full City</span><span data-en="French" data-ar="داكن">French</span>
+        </div>
+        <div class="roastline-pins">
+          <button class="pin" style="left:8%; color:#B99A6E;" data-detail="pin-a">
+            <span class="dot"></span><span class="pin-label" data-en="Dune Roasters" data-ar="داين روسترز">Dune Roasters</span>
+            <span class="pin-detail" id="pin-a">
+              <strong data-en="Light · Ethiopia Guji" data-ar="فاتح · إثيوبيا غوجي">Light · Ethiopia Guji</strong>
+              <span data-en="Blueberry, jasmine, lemongrass." data-ar="توت أزرق، ياسمين، ليمون‌غراس.">Blueberry, jasmine, lemongrass.</span>
+            </span>
+          </button>
+          <button class="pin" style="left:28%; color:#C79A5D;" data-detail="pin-b">
+            <span class="dot"></span><span class="pin-label" data-en="North Bank" data-ar="نورث بانك">North Bank</span>
+            <span class="pin-detail" id="pin-b">
+              <strong data-en="Light-Medium · Colombia Huila" data-ar="فاتح-متوسط · كولومبيا هويلا">Light-Medium · Colombia Huila</strong>
+              <span data-en="Red apple, honey, caramel." data-ar="تفاح أحمر، عسل، كراميل.">Red apple, honey, caramel.</span>
+            </span>
+          </button>
+          <button class="pin" style="left:50%; color:#A9723F;" data-detail="pin-c">
+            <span class="dot"></span><span class="pin-label" data-en="Cedar &amp; Stone" data-ar="سيدر أند ستون">Cedar &amp; Stone</span>
+            <span class="pin-detail" id="pin-c">
+              <strong data-en="Medium · Costa Rica Tarrazú" data-ar="متوسط · كوستاريكا تاراسو">Medium · Costa Rica Tarrazú</strong>
+              <span data-en="Brown sugar, citrus, almond." data-ar="سكر بني، حمضيات، لوز.">Brown sugar, citrus, almond.</span>
+            </span>
+          </button>
+          <button class="pin" style="left:68%; color:#8A5A34;" data-detail="pin-d">
+            <span class="dot"></span><span class="pin-label" data-en="Falcon's Perch" data-ar="فالكونز بيرش">Falcon's Perch</span>
+            <span class="pin-detail" id="pin-d">
+              <strong data-en="Medium-Dark · Brazil Cerrado" data-ar="متوسط-داكن · البرازيل سيرادو">Medium-Dark · Brazil Cerrado</strong>
+              <span data-en="Hazelnut, milk chocolate." data-ar="بندق، شوكولاتة بالحليب.">Hazelnut, milk chocolate.</span>
+            </span>
+          </button>
+          <button class="pin" style="left:82%; color:#4A2E1F;" data-detail="pin-e">
+            <span class="dot"></span><span class="pin-label" data-en="Al Reem Coffee" data-ar="قهوة الريم">Al Reem Coffee</span>
+            <span class="pin-detail" id="pin-e">
+              <strong data-en="Dark · Guatemala Antigua" data-ar="داكن · غواتيمالا أنتيغوا">Dark · Guatemala Antigua</strong>
+              <span data-en="Molasses, dark chocolate, tobacco." data-ar="دبس السكر، شوكولاتة داكنة، تبغ.">Molasses, dark chocolate, tobacco.</span>
+            </span>
+          </button>
+          <button class="pin" style="left:94%; color:#2E1B12;" data-detail="pin-f">
+            <span class="dot"></span><span class="pin-label" data-en="Nomad Roasters" data-ar="نوماد روسترز">Nomad Roasters</span>
+            <span class="pin-detail" id="pin-f">
+              <strong data-en="French · House Espresso Blend" data-ar="فرنسي · مزيج إسبريسو خاص">French · House Espresso Blend</strong>
+              <span data-en="Toasted walnut, cocoa, smoky finish." data-ar="جوز محمص، كاكاو، نهاية مدخّنة.">Toasted walnut, cocoa, smoky finish.</span>
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SHOP ================= -->
+  <section id="beans">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow" data-en="Shop the marketplace" data-ar="تسوّق من السوق">Shop the marketplace</span>
+        <h2 data-en="Six roasters. One checkout." data-ar="ست محامص. عملية دفع واحدة.">Six roasters. One checkout.</h2>
+        <p data-en="Each bag ships from us, not the roaster — one delivery even if you mix and match." data-ar="كل كيس يُشحن منا نحن، وليس من المحمصة — توصيل واحد حتى لو مزجت بين عدة أصناف.">Each bag ships from us, not the roaster — one delivery even if you mix and match.</p>
+      </div>
+      <div class="grid" id="beansGrid">
+
+        <article class="card" data-name-en="Dune Roasters — Ethiopia Guji" data-name-ar="داين روسترز — إثيوبيا غوجي" data-price="62">
+          <div class="card-art" style="background:radial-gradient(circle at 30% 20%, #3a2a1d, #221712);">
+            <svg viewBox="0 0 120 120" fill="none"><ellipse cx="60" cy="60" rx="34" ry="46" stroke="#E8C68C" stroke-width="2"/><path d="M60 18 C 48 42, 48 78, 60 102" stroke="#E8C68C" stroke-width="2" stroke-linecap="round"/></svg>
+          </div>
+          <div class="card-body">
+            <span class="card-eyebrow" data-en="Light Roast · By Dune Roasters" data-ar="تحميص فاتح · من داين روسترز">Light Roast · By Dune Roasters</span>
+            <h3 data-en="Ethiopia Guji" data-ar="إثيوبيا غوجي">Ethiopia Guji</h3>
+            <p class="card-notes" data-en="Blueberry, jasmine, lemongrass. Washed, 1,950m. Best as pour-over." data-ar="توت أزرق، ياسمين، ليمون‌غراس. مغسولة، 1,950م. الأفضل بطريقة التقطير اليدوي.">Blueberry, jasmine, lemongrass. Washed, 1,950m. Best as pour-over.</p>
+            <div class="card-foot">
+              <span class="price" data-price-label="250g">AED 62 <small>/ 250g</small></span>
+              <button class="add-btn" data-add data-en="Add to Bag" data-ar="أضف للسلة">Add to Bag</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" data-name-en="North Bank — Colombia Huila" data-name-ar="نورث بانك — كولومبيا هويلا" data-price="58">
+          <div class="card-art" style="background:radial-gradient(circle at 30% 20%, #3a2a1d, #221712);">
+            <svg viewBox="0 0 120 120" fill="none"><ellipse cx="60" cy="60" rx="34" ry="46" stroke="#C79A5D" stroke-width="2"/><path d="M60 18 C 48 42, 48 78, 60 102" stroke="#C79A5D" stroke-width="2" stroke-linecap="round"/></svg>
+          </div>
+          <div class="card-body">
+            <span class="card-eyebrow" data-en="Light-Medium · By North Bank" data-ar="فاتح-متوسط · من نورث بانك">Light-Medium · By North Bank</span>
+            <h3 data-en="Colombia Huila" data-ar="كولومبيا هويلا">Colombia Huila</h3>
+            <p class="card-notes" data-en="Red apple, honey, caramel. Smallholder lots, southern highlands." data-ar="تفاح أحمر، عسل، كراميل. من مزارع صغيرة في المرتفعات الجنوبية.">Red apple, honey, caramel. Smallholder lots, southern highlands.</p>
+            <div class="card-foot">
+              <span class="price">AED 58 <small>/ 250g</small></span>
+              <button class="add-btn" data-add data-en="Add to Bag" data-ar="أضف للسلة">Add to Bag</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" data-name-en="Cedar &amp; Stone — Costa Rica Tarrazú" data-name-ar="سيدر أند ستون — كوستاريكا تاراسو" data-price="55">
+          <div class="card-art" style="background:radial-gradient(circle at 30% 20%, #3a2a1d, #221712);">
+            <svg viewBox="0 0 120 120" fill="none"><ellipse cx="60" cy="60" rx="34" ry="46" stroke="#A9723F" stroke-width="2"/><path d="M60 18 C 48 42, 48 78, 60 102" stroke="#A9723F" stroke-width="2" stroke-linecap="round"/></svg>
+          </div>
+          <div class="card-body">
+            <span class="card-eyebrow" data-en="Medium · By Cedar &amp; Stone" data-ar="متوسط · من سيدر أند ستون">Medium · By Cedar &amp; Stone</span>
+            <h3 data-en="Costa Rica Tarrazú" data-ar="كوستاريكا تاراسو">Costa Rica Tarrazú</h3>
+            <p class="card-notes" data-en="Brown sugar, citrus, almond. Honey-processed, single estate." data-ar="سكر بني، حمضيات، لوز. معالجة العسل، من مزرعة واحدة.">Brown sugar, citrus, almond. Honey-processed, single estate.</p>
+            <div class="card-foot">
+              <span class="price">AED 55 <small>/ 250g</small></span>
+              <button class="add-btn" data-add data-en="Add to Bag" data-ar="أضف للسلة">Add to Bag</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" data-name-en="Falcon's Perch — Brazil Cerrado" data-name-ar="فالكونز بيرش — البرازيل سيرادو" data-price="48">
+          <div class="card-art" style="background:radial-gradient(circle at 30% 20%, #3a2a1d, #221712);">
+            <svg viewBox="0 0 120 120" fill="none"><ellipse cx="60" cy="60" rx="34" ry="46" stroke="#8A5A34" stroke-width="2"/><path d="M60 18 C 48 42, 48 78, 60 102" stroke="#8A5A34" stroke-width="2" stroke-linecap="round"/></svg>
+          </div>
+          <div class="card-body">
+            <span class="card-eyebrow" data-en="Medium-Dark · By Falcon's Perch" data-ar="متوسط-داكن · من فالكونز بيرش">Medium-Dark · By Falcon's Perch</span>
+            <h3 data-en="Brazil Cerrado" data-ar="البرازيل سيرادو">Brazil Cerrado</h3>
+            <p class="card-notes" data-en="Hazelnut, milk chocolate. Natural process, low acidity." data-ar="بندق، شوكولاتة بالحليب. معالجة طبيعية، حموضة منخفضة.">Hazelnut, milk chocolate. Natural process, low acidity.</p>
+            <div class="card-foot">
+              <span class="price">AED 48 <small>/ 250g</small></span>
+              <button class="add-btn" data-add data-en="Add to Bag" data-ar="أضف للسلة">Add to Bag</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" data-name-en="Al Reem Coffee — Guatemala Antigua" data-name-ar="قهوة الريم — غواتيمالا أنتيغوا" data-price="52">
+          <div class="card-art" style="background:radial-gradient(circle at 30% 20%, #3a2a1d, #221712);">
+            <svg viewBox="0 0 120 120" fill="none"><ellipse cx="60" cy="60" rx="34" ry="46" stroke="#4A2E1F" stroke-width="2"/><path d="M60 18 C 48 42, 48 78, 60 102" stroke="#4A2E1F" stroke-width="2" stroke-linecap="round"/></svg>
+          </div>
+          <div class="card-body">
+            <span class="card-eyebrow" data-en="Dark · By Al Reem Coffee" data-ar="داكن · من قهوة الريم">Dark · By Al Reem Coffee</span>
+            <h3 data-en="Guatemala Antigua" data-ar="غواتيمالا أنتيغوا">Guatemala Antigua</h3>
+            <p class="card-notes" data-en="Molasses, dark chocolate, tobacco. Volcanic soil, full body." data-ar="دبس السكر، شوكولاتة داكنة، تبغ. تربة بركانية، قوام كامل.">Molasses, dark chocolate, tobacco. Volcanic soil, full body.</p>
+            <div class="card-foot">
+              <span class="price">AED 52 <small>/ 250g</small></span>
+              <button class="add-btn" data-add data-en="Add to Bag" data-ar="أضف للسلة">Add to Bag</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" data-name-en="Nomad Roasters — House Espresso" data-name-ar="نوماد روسترز — إسبريسو خاص" data-price="50">
+          <div class="card-art" style="background:radial-gradient(circle at 30% 20%, #3a2a1d, #221712);">
+            <svg viewBox="0 0 120 120" fill="none"><ellipse cx="60" cy="60" rx="34" ry="46" stroke="#2E1B12" stroke-width="2"/><path d="M60 18 C 48 42, 48 78, 60 102" stroke="#2E1B12" stroke-width="2" stroke-linecap="round"/></svg>
+          </div>
+          <div class="card-body">
+            <span class="card-eyebrow" data-en="French · By Nomad Roasters" data-ar="فرنسي · من نوماد روسترز">French · By Nomad Roasters</span>
+            <h3 data-en="House Espresso Blend" data-ar="مزيج إسبريسو خاص">House Espresso Blend</h3>
+            <p class="card-notes" data-en="Toasted walnut, cocoa, smoky finish. Built for milk drinks." data-ar="جوز محمص، كاكاو، نهاية مدخّنة. مثالي لمشروبات الحليب.">Toasted walnut, cocoa, smoky finish. Built for milk drinks.</p>
+            <div class="card-foot">
+              <span class="price">AED 50 <small>/ 250g</small></span>
+              <button class="add-btn" data-add data-en="Add to Bag" data-ar="أضف للسلة">Add to Bag</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card bundle-card" data-name-en="Discovery Sampler (3 Roasters)" data-name-ar="مجموعة الاستكشاف (3 محامص)" data-price="89">
+          <div class="card-art" aria-hidden="true">
+            <span class="badge" data-en="Save AED 27" data-ar="وفّر 27 د.إ">Save AED 27</span>
+            <svg viewBox="0 0 160 120" width="70%" fill="none"><ellipse cx="40" cy="70" rx="24" ry="32" stroke="#E8C68C" stroke-width="2"/><ellipse cx="80" cy="70" rx="24" ry="32" stroke="#C79A5D" stroke-width="2"/><ellipse cx="120" cy="70" rx="24" ry="32" stroke="#4A2E1F" stroke-width="2"/></svg>
+          </div>
+          <div class="card-body">
+            <span class="card-eyebrow" data-en="Bundle · Three Roasters" data-ar="حزمة · ثلاث محامص">Bundle · Three Roasters</span>
+            <h3 data-en="Discovery Sampler" data-ar="مجموعة الاستكشاف">Discovery Sampler</h3>
+            <p class="card-notes" data-en="New here? Try one light, one medium, one dark — from three different roasters — before committing to a full bag." data-ar="جديد هنا؟ جرّب واحدًا فاتحًا وواحدًا متوسطًا وواحدًا داكنًا — من ثلاث محامص مختلفة — قبل أن تختار كيسًا كاملًا.">New here? Try one light, one medium, one dark — from three different roasters — before committing to a full bag.</p>
+            <ul class="bundle-list">
+              <li data-en="100g Dune Roasters — Ethiopia Guji" data-ar="100غ داين روسترز — إثيوبيا غوجي">100g Dune Roasters — Ethiopia Guji</li>
+              <li data-en="100g Cedar &amp; Stone — Costa Rica Tarrazú" data-ar="100غ سيدر أند ستون — كوستاريكا تاراسو">100g Cedar &amp; Stone — Costa Rica Tarrazú</li>
+              <li data-en="100g Al Reem Coffee — Guatemala Antigua" data-ar="100غ قهوة الريم — غواتيمالا أنتيغوا">100g Al Reem Coffee — Guatemala Antigua</li>
+            </ul>
+            <div class="card-foot">
+              <span class="price">AED 89 <small style="opacity:.5; text-decoration:line-through;">AED 116</small></span>
+              <button class="add-btn" data-add data-en="Add to Bag" data-ar="أضف للسلة">Add to Bag</button>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= BREW GUIDE ================= -->
+  <section id="ritual" class="on-paper">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow" data-en="Brew guide — pour-over, timed" data-ar="دليل التحضير — بالتقطير اليدوي">Brew guide — pour-over, timed</span>
+        <h2 data-en="Three minutes, four moves." data-ar="ثلاث دقائق، أربع خطوات.">Three minutes, four moves.</h2>
+        <p data-en="Works for any bag on this page: 15g coffee, medium-fine grind, 250g water off the boil." data-ar="يناسب أي كيس في هذه الصفحة: 15غ قهوة، طحن متوسط-ناعم، 250غ ماء بعد الغليان.">Works for any bag on this page: 15g coffee, medium-fine grind, 250g water off the boil.</p>
+      </div>
+      <div class="ritual-steps">
+        <div class="ritual-step">
+          <span class="time">0:00 — 0:30</span>
+          <h3 data-en="Bloom" data-ar="التفتّح">Bloom</h3>
+          <p data-en="Pour 40g water. Let the grounds swell and release CO₂." data-ar="اسكب 40غ ماء. دع الطحين ينتفخ ويطلق ثاني أكسيد الكربون.">Pour 40g water. Let the grounds swell and release CO₂.</p>
+        </div>
+        <div class="ritual-step">
+          <span class="time">0:30 — 1:15</span>
+          <h3 data-en="First Pour" data-ar="الصبّة الأولى">First Pour</h3>
+          <p data-en="Slow spirals from the center out, up to 200g total." data-ar="صبّ حلزوني بطيء من المنتصف إلى الخارج، حتى 200غ.">Slow spirals from the center out, up to 200g total.</p>
+        </div>
+        <div class="ritual-step">
+          <span class="time">1:15 — 2:00</span>
+          <h3 data-en="Second Pour" data-ar="الصبّة الثانية">Second Pour</h3>
+          <p data-en="Top up to 250g. This is the last water you add." data-ar="أكمل حتى 250غ. هذا آخر ماء تضيفه.">Top up to 250g. This is the last water you add.</p>
+        </div>
+        <div class="ritual-step">
+          <span class="time">2:00 — 3:00</span>
+          <h3 data-en="Drawdown" data-ar="التصريف">Drawdown</h3>
+          <p data-en="Let it fully drain. Swirl once, then serve." data-ar="دعه يصفّى تمامًا. حرّكه مرة، ثم قدّمه.">Let it fully drain. Swirl once, then serve.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= WHY US ================= -->
+  <div class="band" id="why">
+    <div class="wrap">
+      <div class="value-grid">
+        <div class="value-item">
+          <h3 data-en="One store, every roaster" data-ar="متجر واحد، كل المحامص">One store, every roaster</h3>
+          <p data-en="Beans from 12+ independent UAE roasters, compared side by side instead of scattered across a dozen sites." data-ar="حبوب من أكثر من 12 محمصة إماراتية مستقلة، مقارنة جنبًا إلى جنب بدلاً من التنقل بين مواقع متعددة.">Beans from 12+ independent UAE roasters, compared side by side instead of scattered across a dozen sites.</p>
+        </div>
+        <div class="value-item">
+          <h3 data-en="Freshness checked per batch" data-ar="فحص الطزاجة لكل دفعة">Freshness checked per batch</h3>
+          <p data-en="We verify the roast date on everything we list and pull anything older than 30 days." data-ar="نتحقق من تاريخ التحميص لكل ما نعرضه ونزيل أي منتج يتجاوز عمره 30 يومًا.">We verify the roast date on everything we list and pull anything older than 30 days.</p>
+        </div>
+        <div class="value-item">
+          <h3 data-en="UAE-wide delivery" data-ar="توصيل لكل الإمارات">UAE-wide delivery</h3>
+          <p data-en="Same-day in Dubai, 1–2 days across the rest of the Emirates. One delivery, any mix of roasters." data-ar="توصيل في نفس اليوم داخل دبي، ويوم إلى يومين لباقي الإمارات. توصيل واحد مهما اختلفت المحامص.">Same-day in Dubai, 1–2 days across the rest of the Emirates. One delivery, any mix of roasters.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= FOOTER ================= -->
+  <footer>
+    <div class="wrap">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="brand" href="#top">
+            <span data-en="Souk Al-" data-ar="سوق ">Souk Al-</span><em data-en="Bunn" data-ar="البُن">Bunn</em>
+          </a>
+          <p data-en="A curated marketplace for specialty coffee beans from independent roasters across the UAE." data-ar="سوق مُنتقى لحبوب القهوة المختصة من محامص مستقلة في جميع أنحاء الإمارات.">A curated marketplace for specialty coffee beans from independent roasters across the UAE.</p>
+        </div>
+        <div class="footer-col">
+          <h4 data-en="Shop" data-ar="المتجر">Shop</h4>
+          <ul>
+            <li><a href="#beans" data-en="All Beans" data-ar="كل الحبوب">All Beans</a></li>
+            <li><a href="#roastline" data-en="Compare Roasts" data-ar="قارن التحميص">Compare Roasts</a></li>
+            <li><a href="#beans" data-en="Discovery Sampler" data-ar="مجموعة الاستكشاف">Discovery Sampler</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4 data-en="Learn" data-ar="تعرّف">Learn</h4>
+          <ul>
+            <li><a href="#roastline" data-en="Roast Guide" data-ar="دليل التحميص">Roast Guide</a></li>
+            <li><a href="#ritual" data-en="Brew Guide" data-ar="دليل التحضير">Brew Guide</a></li>
+            <li><a href="#why" data-en="Why Souk Al-Bunn" data-ar="لماذا سوق البُن">Why Souk Al-Bunn</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4 data-en="Stay in the loop" data-ar="ابقَ على اطّلاع">Stay in the loop</h4>
+          <form class="subscribe-form" id="subscribeForm">
+            <input type="email" id="subscribeEmail" placeholder="you@email.com" aria-label="Email address" required>
+            <button class="btn btn-primary" type="submit" data-en="Join" data-ar="اشترك">Join</button>
+          </form>
+          <p class="form-note" id="formNote" data-en="New roasters, restocks, no spam." data-ar="محامص جديدة، تجديد المخزون، بدون رسائل مزعجة.">New roasters, restocks, no spam.</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span data-en="© 2026 Souk Al-Bunn" data-ar="© 2026 سوق البُن">© 2026 Souk Al-Bunn</span>
+        <span data-en="Draft storefront — checkout not yet connected · prices incl. 5% VAT" data-ar="واجهة متجر أولية — الدفع غير مفعّل بعد · الأسعار شاملة ضريبة القيمة المضافة 5%">Draft storefront — checkout not yet connected · prices incl. 5% VAT</span>
+      </div>
+    </div>
+  </footer>
+
+</main>
+
+<!-- ================= BAG DRAWER ================= -->
+<div class="bag-overlay" id="bagOverlay"></div>
+<aside class="bag-drawer" id="bagDrawer" aria-label="Shopping bag">
+  <div class="bag-head">
+    <h3 data-en="Your Bag" data-ar="سلتك">Your Bag</h3>
+    <button class="bag-close" id="bagClose" aria-label="Close bag">&times;</button>
+  </div>
+  <div class="bag-items" id="bagItems">
+    <p class="bag-empty" data-en="Your bag is empty. Add a bag of beans to get started." data-ar="سلتك فارغة. أضف كيس قهوة للبدء.">Your bag is empty. Add a bag of beans to get started.</p>
+  </div>
+  <div class="bag-foot">
+    <div class="bag-total"><span data-en="Total" data-ar="الإجمالي">Total</span><span id="bagTotal">AED 0</span></div>
+    <p class="form-note" style="margin-bottom:12px;" data-en="Prices include 5% VAT." data-ar="الأسعار شاملة ضريبة القيمة المضافة 5%.">Prices include 5% VAT.</p>
+    <button class="btn btn-primary" id="checkoutBtn" data-en="Checkout" data-ar="إتمام الشراء">Checkout</button>
+    <p class="form-note" data-en="Demo storefront — connect a UAE payment gateway to accept real orders." data-ar="واجهة متجر أولية — قم بربط بوابة دفع إماراتية لقبول طلبات حقيقية.">Demo storefront — connect a UAE payment gateway to accept real orders.</p>
+  </div>
+</aside>
+
+<div class="toast" id="toast"></div>
+
+<script src="js/main.js"></script>
+</body>
+</html>
