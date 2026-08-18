@@ -1,0 +1,82 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client"
+  output   = "../lib/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model Season {
+  id              String    @id @default(cuid())
+  slug            String    @unique
+  name            String
+  tagline         String
+  description     String
+  emoji           String    @default("✨")
+  colorFrom       String    @default("#f59e0b")
+  colorTo         String    @default("#ea580c")
+  discountPercent Int       @default(0)
+  startsAt        DateTime
+  endsAt          DateTime
+  active          Boolean   @default(true)
+  products        Product[]
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+}
+
+model Category {
+  id       String    @id @default(cuid())
+  slug     String    @unique
+  name     String
+  products Product[]
+}
+
+model Product {
+  id           String      @id @default(cuid())
+  slug         String      @unique
+  title        String
+  description  String
+  priceCents   Int
+  currency     String      @default("usd")
+  coverImage   String
+  filePath     String
+  pageCount    Int?
+  featured     Boolean     @default(false)
+  published    Boolean     @default(true)
+  seasonId     String?
+  season       Season?     @relation(fields: [seasonId], references: [id])
+  categoryId   String?
+  category     Category?   @relation(fields: [categoryId], references: [id])
+  orderItems   OrderItem[]
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
+}
+
+model Order {
+  id              String      @id @default(cuid())
+  email           String
+  status          String      @default("PENDING")
+  totalCents      Int
+  currency        String      @default("usd")
+  stripeSessionId String?     @unique
+  items           OrderItem[]
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+}
+
+model OrderItem {
+  id            String   @id @default(cuid())
+  orderId       String
+  order         Order    @relation(fields: [orderId], references: [id])
+  productId     String
+  product       Product  @relation(fields: [productId], references: [id])
+  priceCents    Int
+  downloadToken String   @unique
+  downloadCount Int      @default(0)
+  maxDownloads  Int      @default(5)
+  createdAt     DateTime @default(now())
+}
