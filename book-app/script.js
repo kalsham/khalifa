@@ -15,7 +15,7 @@
     secondName: "",
     lastName: "",
     number: "",
-    phrase: "",
+    phraseImage: "",
     picture: "",
   };
 
@@ -23,6 +23,97 @@
   let browseIndex = 0;
   let currentStep = 1;
   let idleTimer = null;
+
+  const phraseCanvas = document.getElementById("phraseCanvas");
+  const phraseCtx = phraseCanvas.getContext("2d");
+  let hasDrawn = false;
+  let isDrawing = false;
+  let lastPoint = null;
+
+  function setupPhraseCanvas() {
+    const rect = phraseCanvas.getBoundingClientRect();
+    const dpr = window.devicePixelRatio || 1;
+    phraseCanvas.width = Math.max(1, Math.round(rect.width * dpr));
+    phraseCanvas.height = Math.max(1, Math.round(rect.height * dpr));
+    phraseCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    phraseCtx.strokeStyle = "#3b2a18";
+    phraseCtx.lineWidth = 3;
+    phraseCtx.lineCap = "round";
+    phraseCtx.lineJoin = "round";
+  }
+
+  function canvasPoint(e) {
+    const rect = phraseCanvas.getBoundingClientRect();
+    return { x: e.clientX - rect.left, y: e.clientY - rect.top };
+  }
+
+  function trimmedPhraseDataUrl() {
+    const w = phraseCanvas.width;
+    const h = phraseCanvas.height;
+    const pixels = phraseCtx.getImageData(0, 0, w, h).data;
+    let minX = w;
+    let minY = h;
+    let maxX = -1;
+    let maxY = -1;
+    for (let y = 0; y < h; y++) {
+      for (let x = 0; x < w; x++) {
+        if (pixels[(y * w + x) * 4 + 3] > 10) {
+          if (x < minX) minX = x;
+          if (x > maxX) maxX = x;
+          if (y < minY) minY = y;
+          if (y > maxY) maxY = y;
+        }
+      }
+    }
+    if (maxX < minX || maxY < minY) {
+      return phraseCanvas.toDataURL("image/webp", 0.92);
+    }
+    const pad = 10;
+    minX = Math.max(0, minX - pad);
+    minY = Math.max(0, minY - pad);
+    maxX = Math.min(w - 1, maxX + pad);
+    maxY = Math.min(h - 1, maxY + pad);
+    const cropW = maxX - minX + 1;
+    const cropH = maxY - minY + 1;
+    const cropCanvas = document.createElement("canvas");
+    cropCanvas.width = cropW;
+    cropCanvas.height = cropH;
+    cropCanvas.getContext("2d").drawImage(phraseCanvas, minX, minY, cropW, cropH, 0, 0, cropW, cropH);
+    return cropCanvas.toDataURL("image/webp", 0.92);
+  }
+
+  function clearPhraseCanvas() {
+    phraseCtx.save();
+    phraseCtx.setTransform(1, 0, 0, 1, 0, 0);
+    phraseCtx.clearRect(0, 0, phraseCanvas.width, phraseCanvas.height);
+    phraseCtx.restore();
+    hasDrawn = false;
+  }
+
+  phraseCanvas.addEventListener("pointerdown", (e) => {
+    isDrawing = true;
+    hasDrawn = true;
+    lastPoint = canvasPoint(e);
+    phraseCanvas.setPointerCapture(e.pointerId);
+    showError("error-phrase", false);
+  });
+  phraseCanvas.addEventListener("pointermove", (e) => {
+    if (!isDrawing) return;
+    const p = canvasPoint(e);
+    phraseCtx.beginPath();
+    phraseCtx.moveTo(lastPoint.x, lastPoint.y);
+    phraseCtx.lineTo(p.x, p.y);
+    phraseCtx.stroke();
+    lastPoint = p;
+  });
+  ["pointerup", "pointercancel", "pointerleave"].forEach((evt) => {
+    phraseCanvas.addEventListener(evt, () => {
+      isDrawing = false;
+    });
+  });
+
+  setupPhraseCanvas();
+  window.addEventListener("resize", setupPhraseCanvas);
 
   function loadEntries() {
     try {
@@ -101,8 +192,9 @@
   }
 
   function collectPhrase() {
-    state.phrase = document.getElementById("phrase").value.trim();
-    return state.phrase.length > 0;
+    if (!hasDrawn) return false;
+    state.phraseImage = trimmedPhraseDataUrl();
+    return true;
   }
 
   function collectPicture() {
@@ -116,10 +208,10 @@
 
   function resetGuestState() {
     document.getElementById("form-details").reset();
-    document.getElementById("phrase").value = "";
+    clearPhraseCanvas();
     document.querySelectorAll(".plate-option").forEach((b) => b.setAttribute("aria-selected", "false"));
     document.getElementById("phraseByName").textContent = "اسمك الأول";
-    state.firstName = state.secondName = state.lastName = state.number = state.phrase = state.picture = "";
+    state.firstName = state.secondName = state.lastName = state.number = state.phraseImage = state.picture = "";
   }
 
   function showToast(message, duration) {
@@ -147,7 +239,7 @@
 
   function renderResult() {
     document.getElementById("resultFirstName").textContent = state.firstName;
-    document.getElementById("resultPhrase").textContent = state.phrase;
+    document.getElementById("resultPhraseImg").src = state.phraseImage;
     document.getElementById("resultFullName").textContent =
       `${state.firstName} ${state.secondName} ${state.lastName}`.replace(/\s+/g, " ").trim();
     document.getElementById("resultNumber").textContent = toEasternDigits(state.number);
@@ -165,7 +257,7 @@
     const entry = entries[browseIndex];
     document.getElementById("browseChapter").textContent = `الفصل رقم ${toEasternDigits(browseIndex + 1)}`;
     document.getElementById("browseFirstName").textContent = entry.firstName;
-    document.getElementById("browsePhrase").textContent = entry.phrase;
+    document.getElementById("browsePhraseImg").src = entry.phraseImage;
     document.getElementById("browseFullName").textContent =
       `${entry.firstName} ${entry.secondName} ${entry.lastName}`.replace(/\s+/g, " ").trim();
     document.getElementById("browseCounter").textContent =
@@ -248,6 +340,8 @@
         }
         goToStep(5);
       }
+    } else if (action === "clear-phrase") {
+      clearPhraseCanvas();
     } else if (action === "redo") {
       resetGuestState();
       goToStep(1);
@@ -260,7 +354,7 @@
         firstName: state.firstName,
         secondName: state.secondName,
         lastName: state.lastName,
-        phrase: state.phrase,
+        phraseImage: state.phraseImage,
         picture: state.picture,
       });
       saveEntries();

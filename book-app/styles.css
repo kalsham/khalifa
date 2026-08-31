@@ -389,6 +389,14 @@ button {
 }
 
 /* ---------- Phrase ---------- */
+.phrase-hint {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 15px;
+  color: var(--ink-soft);
+  margin: 0 0 10px;
+}
+
 .phrase-box {
   border: 1.5px solid var(--paper-shadow);
   background: var(--paper-alt);
@@ -397,22 +405,32 @@ button {
   box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.08);
 }
 
-.phrase-input {
+.phrase-canvas {
   width: 100%;
-  min-height: 140px;
-  resize: vertical;
-  border: none;
-  background: transparent;
-  font-family: var(--font-body);
-  font-style: italic;
-  font-size: 19px;
-  line-height: 1.7;
-  padding: 16px;
-  color: var(--ink);
+  height: 170px;
+  display: block;
+  touch-action: none;
+  cursor: crosshair;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 55px,
+    var(--paper-shadow) 55px,
+    var(--paper-shadow) 56px
+  );
+  background-position: 0 44px;
 }
 
-.phrase-input:focus {
-  outline: none;
+.phrase-tools {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 14px;
+}
+
+.btn-small {
+  padding: 8px 16px;
+  font-size: 12px;
 }
 
 .phrase-byline {
@@ -420,7 +438,7 @@ button {
   font-style: italic;
   font-size: 17px;
   color: var(--ink-soft);
-  margin: 14px 2px 0;
+  margin: 0;
 }
 
 /* ---------- Picture chooser ---------- */
@@ -546,24 +564,38 @@ button {
   margin: 0 0 22px;
 }
 
-.result-phrase {
-  font-family: var(--font-body);
-  font-style: italic;
-  font-size: 20px;
-  line-height: 1.75;
-  color: var(--ink);
+.phrase-frame {
+  position: relative;
+  padding: 14px 30px 22px;
   margin: 0 0 20px;
 }
 
-.result-phrase::first-letter {
+.phrase-frame::before {
+  content: "«";
+  position: absolute;
+  top: -14px;
+  right: 0;
   font-family: var(--font-display);
-  font-style: normal;
-  font-size: 2.4em;
-  font-weight: 700;
-  float: right;
-  line-height: 0.75;
-  padding: 5px 0 0 10px;
+  font-size: 2.2em;
   color: var(--cloth);
+  line-height: 1;
+}
+
+.phrase-frame::after {
+  content: "»";
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  font-family: var(--font-display);
+  font-size: 2.2em;
+  color: var(--cloth);
+  line-height: 1;
+}
+
+.phrase-image {
+  display: block;
+  max-width: 100%;
+  height: auto;
 }
 
 .result-signature {
@@ -643,8 +675,14 @@ button {
   .framed-art { max-width: 150px; }
   .catalog { margin-top: 10px; }
   .result-title { margin-bottom: 12px; }
-  .result-phrase { margin-bottom: 12px; }
-  .result-nav { padding: 12px 22px 20px; }
+  .phrase-frame { margin-bottom: 12px; padding: 12px 24px 18px; }
+  .phrase-canvas { height: 130px; }
+  .result-nav {
+    padding: 12px 22px 20px;
+    flex-direction: column-reverse;
+    gap: 10px;
+    align-items: stretch;
+  }
   .browse-nav {
     padding: 12px 22px 20px;
     flex-direction: column;

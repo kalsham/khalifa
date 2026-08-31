@@ -69,11 +69,15 @@
         <p class="page-label">الصفحة ٢ — الإهداء</p>
         <h2 class="page-title">اكتب عبارةً لصفحة الافتتاح.</h2>
         <div class="divider" aria-hidden="true"></div>
+        <p class="phrase-hint">اكتب شيئًا يستحق أن يُخلَّد على الورق، بخط يدك.</p>
         <div class="phrase-box">
-          <textarea class="phrase-input" id="phrase" maxlength="220" placeholder="اكتب شيئًا يستحق أن يُخلَّد على الورق…" required></textarea>
+          <canvas class="phrase-canvas" id="phraseCanvas"></canvas>
         </div>
-        <p class="phrase-byline">— <span id="phraseByName">اسمك الأول</span></p>
-        <p class="field-error" id="error-phrase" role="alert" hidden>لا يمكن أن يكون الإهداء فارغًا.</p>
+        <div class="phrase-tools">
+          <button class="btn btn-ghost btn-small" data-action="clear-phrase" type="button">امسح وأعد الكتابة</button>
+          <p class="phrase-byline">— <span id="phraseByName">اسمك الأول</span></p>
+        </div>
+        <p class="field-error" id="error-phrase" role="alert" hidden>اكتب عبارتك بالقلم قبل المتابعة.</p>
         <div class="page-nav">
           <button class="btn btn-ghost" data-action="back" type="button">رجوع</button>
           <button class="btn btn-primary" data-action="next" data-from="3" type="button">الصفحة التالية</button>
@@ -167,7 +171,9 @@
           <div class="gutter" aria-hidden="true"></div>
           <div class="leaf leaf-text">
             <h2 class="result-title">كتاب <span id="resultFirstName"></span></h2>
-            <p class="result-phrase">«<span id="resultPhrase"></span>»</p>
+            <div class="phrase-frame">
+              <img class="phrase-image" id="resultPhraseImg" alt="عبارة مكتوبة بخط الضيف" />
+            </div>
             <p class="result-signature">— <span id="resultFullName"></span></p>
           </div>
         </div>
@@ -187,7 +193,9 @@
           <div class="gutter" aria-hidden="true"></div>
           <div class="leaf leaf-text">
             <h2 class="result-title">كتاب <span id="browseFirstName"></span></h2>
-            <p class="result-phrase">«<span id="browsePhrase"></span>»</p>
+            <div class="phrase-frame">
+              <img class="phrase-image" id="browsePhraseImg" alt="عبارة مكتوبة بخط الضيف" />
+            </div>
             <p class="result-signature">— <span id="browseFullName"></span></p>
           </div>
         </div>
