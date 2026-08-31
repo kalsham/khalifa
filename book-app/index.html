@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Bind Your Book</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<div class="library"></div>
+<div class="grain"></div>
+
+<div class="stage">
+  <div class="book" id="book">
+    <div class="spine"></div>
+    <div class="ribbon" id="ribbon" style="--progress: 0"></div>
+
+    <div class="pages" id="pages" style="--dir: 1">
+
+      <!-- Step 1: Cover -->
+      <section class="page cover-page active" data-step="1" aria-label="Cover">
+        <div class="plate">Est. Today</div>
+        <h1 class="cover-title">A Book<br />of Your Own</h1>
+        <p class="cover-sub">Four short pages. One keepsake at the end &mdash; a page built entirely from what you tell it.</p>
+        <button class="btn btn-primary btn-start" data-action="start" type="button">Start</button>
+      </section>
+
+      <!-- Step 2: Details -->
+      <section class="page" data-step="2" aria-label="Your details">
+        <p class="page-label">Page 01 &mdash; The Bookplate</p>
+        <h2 class="page-title">Who does this book belong to?</h2>
+        <form class="form-grid" id="form-details" novalidate>
+          <label class="field">
+            <span class="field-label">First Name</span>
+            <input class="field-input" type="text" name="firstName" id="firstName" autocomplete="given-name" required />
+          </label>
+          <label class="field">
+            <span class="field-label">Second Name</span>
+            <input class="field-input" type="text" name="secondName" id="secondName" autocomplete="additional-name" required />
+          </label>
+          <label class="field">
+            <span class="field-label">Last Name</span>
+            <input class="field-input" type="text" name="lastName" id="lastName" autocomplete="family-name" required />
+          </label>
+          <label class="field">
+            <span class="field-label">Number</span>
+            <input class="field-input" type="tel" name="number" id="number" autocomplete="tel" required />
+          </label>
+        </form>
+        <p class="field-error" id="error-details" role="alert" hidden>Fill in every field before turning the page.</p>
+        <div class="page-nav">
+          <button class="btn btn-ghost" data-action="back" type="button">Back</button>
+          <button class="btn btn-primary" data-action="next" data-from="2" type="button">Next Page</button>
+        </div>
+      </section>
+
+      <!-- Step 3: Phrase -->
+      <section class="page" data-step="3" aria-label="Your phrase">
+        <p class="page-label">Page 02 &mdash; The Dedication</p>
+        <h2 class="page-title">Write a phrase for the opening page.</h2>
+        <div class="phrase-box">
+          <textarea class="phrase-input" id="phrase" maxlength="220" placeholder="Say something worth binding into paper&hellip;" required></textarea>
+        </div>
+        <p class="phrase-byline">&mdash; <span id="phraseByName">your first name</span></p>
+        <p class="field-error" id="error-phrase" role="alert" hidden>The dedication can't be empty.</p>
+        <div class="page-nav">
+          <button class="btn btn-ghost" data-action="back" type="button">Back</button>
+          <button class="btn btn-primary" data-action="next" data-from="3" type="button">Next Page</button>
+        </div>
+      </section>
+
+      <!-- Step 4: Picture -->
+      <section class="page" data-step="4" aria-label="Choose a plate">
+        <p class="page-label">Page 03 &mdash; The Illustration</p>
+        <h2 class="page-title">Choose the plate for your cover.</h2>
+        <div class="plate-grid" id="plateGrid" role="listbox" aria-label="Illustration choices">
+
+          <button class="plate-option" type="button" data-picture="mountains" role="option" aria-selected="false">
+            <svg viewBox="0 0 120 90" class="plate-art" aria-hidden="true">
+              <rect x="0" y="0" width="120" height="90" class="plate-bg"/>
+              <circle cx="94" cy="22" r="9" class="ink-fill"/>
+              <path d="M0 78 L28 40 L44 60 L62 30 L92 78 Z" class="ink-stroke"/>
+              <path d="M62 30 L74 48 L50 48 Z" class="paper-fill"/>
+              <line x1="10" y1="82" x2="110" y2="82" class="ink-stroke thin"/>
+            </svg>
+            <span class="plate-name">Mountains</span>
+          </button>
+
+          <button class="plate-option" type="button" data-picture="ocean" role="option" aria-selected="false">
+            <svg viewBox="0 0 120 90" class="plate-art" aria-hidden="true">
+              <rect x="0" y="0" width="120" height="90" class="plate-bg"/>
+              <path d="M70 20 L70 55 L92 55 Z" class="ink-stroke"/>
+              <line x1="70" y1="16" x2="70" y2="55" class="ink-stroke thin"/>
+              <path d="M18 55 Q28 48 38 55 T58 55 T78 55 T98 55" class="ink-stroke thin"/>
+              <path d="M14 66 Q26 58 38 66 T62 66 T86 66 T106 66" class="ink-stroke thin"/>
+              <path d="M10 77 Q22 69 34 77 T58 77 T82 77 T106 77" class="ink-stroke thin"/>
+            </svg>
+            <span class="plate-name">Ocean</span>
+          </button>
+
+          <button class="plate-option" type="button" data-picture="forest" role="option" aria-selected="false">
+            <svg viewBox="0 0 120 90" class="plate-art" aria-hidden="true">
+              <rect x="0" y="0" width="120" height="90" class="plate-bg"/>
+              <g class="ink-stroke">
+                <path d="M22 70 L22 78 M22 40 L12 58 L32 58 Z M22 26 L14 42 L30 42 Z"/>
+                <path d="M60 74 L60 82 M60 34 L46 58 L74 58 Z M60 16 L48 38 L72 38 Z"/>
+                <path d="M96 70 L96 78 M96 44 L86 60 L106 60 Z"/>
+              </g>
+              <line x1="8" y1="82" x2="112" y2="82" class="ink-stroke thin"/>
+            </svg>
+            <span class="plate-name">Forest</span>
+          </button>
+
+          <button class="plate-option" type="button" data-picture="night" role="option" aria-selected="false">
+            <svg viewBox="0 0 120 90" class="plate-art" aria-hidden="true">
+              <rect x="0" y="0" width="120" height="90" class="plate-bg"/>
+              <g class="ink-fill" transform="translate(58,18) scale(2)">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+              </g>
+              <g class="ink-fill">
+                <circle cx="24" cy="22" r="1.6"/>
+                <circle cx="40" cy="14" r="1.2"/>
+                <circle cx="18" cy="42" r="1.2"/>
+                <circle cx="52" cy="34" r="1.6"/>
+                <circle cx="34" cy="58" r="1.2"/>
+                <circle cx="14" cy="66" r="1.6"/>
+              </g>
+              <line x1="8" y1="82" x2="112" y2="82" class="ink-stroke thin"/>
+            </svg>
+            <span class="plate-name">Night Sky</span>
+          </button>
+
+        </div>
+        <p class="field-error" id="error-plate" role="alert" hidden>Choose one illustration to continue.</p>
+        <div class="page-nav">
+          <button class="btn btn-ghost" data-action="back" type="button">Back</button>
+          <button class="btn btn-primary" data-action="next" data-from="4" type="button">Bind the Book</button>
+        </div>
+      </section>
+
+      <!-- Step 5: Result -->
+      <section class="page result-page" data-step="5" aria-label="Your finished page">
+        <div class="spread">
+          <div class="leaf leaf-left">
+            <p class="chapter-mark">Chapter I</p>
+            <div class="framed-art" id="resultArt"></div>
+            <p class="catalog">No. <span id="resultNumber"></span></p>
+          </div>
+          <div class="gutter" aria-hidden="true"></div>
+          <div class="leaf leaf-right">
+            <h2 class="result-title">The Book of <span id="resultFirstName"></span></h2>
+            <p class="result-phrase">&ldquo;<span id="resultPhrase"></span>&rdquo;</p>
+            <p class="result-signature">&mdash; <span id="resultFullName"></span></p>
+          </div>
+        </div>
+        <div class="page-nav result-nav">
+          <button class="btn btn-ghost" data-action="restart" type="button">Close the Book</button>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
