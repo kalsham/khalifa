@@ -1,12 +1,12 @@
 <!doctype html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Bind Your Book</title>
+<title>كتابٌ خاص بك</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Amiri:ital,wght@0,400;0,700;1,400&family=Reem+Kufi:wght@400;500;700&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -22,97 +22,107 @@
     <div class="pages" id="pages" style="--dir: 1">
 
       <!-- Step 1: Cover -->
-      <section class="page cover-page active" data-step="1" aria-label="Cover">
-        <div class="plate">Est. Today</div>
-        <h1 class="cover-title">A Book<br />of Your Own</h1>
-        <p class="cover-sub">Four short pages. One keepsake at the end &mdash; a page built entirely from what you tell it.</p>
-        <button class="btn btn-primary btn-start" data-action="start" type="button">Start</button>
+      <section class="page cover-page active" data-step="1" aria-label="الغلاف">
+        <div class="plate">نسخة اليوم</div>
+        <h1 class="cover-title">كتابٌ<br />خاص بك</h1>
+        <div class="divider" aria-hidden="true"></div>
+        <p class="cover-sub">أربع صفحاتٍ قصيرة تفصلك عن تذكارٍ واحد — صفحة تُكتب بالكامل مما ترويه لنا.</p>
+        <button class="btn btn-primary btn-start" data-action="start" type="button">ابدأ</button>
       </section>
 
       <!-- Step 2: Details -->
-      <section class="page" data-step="2" aria-label="Your details">
-        <p class="page-label">Page 01 &mdash; The Bookplate</p>
-        <h2 class="page-title">Who does this book belong to?</h2>
+      <section class="page" data-step="2" aria-label="بياناتك">
+        <p class="page-label">الصفحة ١ — بطاقة المالك</p>
+        <h2 class="page-title">لِمَن هذا الكتاب؟</h2>
+        <div class="divider" aria-hidden="true"></div>
         <form class="form-grid" id="form-details" novalidate>
           <label class="field">
-            <span class="field-label">First Name</span>
+            <span class="field-label">الاسم الأول</span>
             <input class="field-input" type="text" name="firstName" id="firstName" autocomplete="given-name" required />
           </label>
           <label class="field">
-            <span class="field-label">Second Name</span>
+            <span class="field-label">الاسم الثاني</span>
             <input class="field-input" type="text" name="secondName" id="secondName" autocomplete="additional-name" required />
           </label>
           <label class="field">
-            <span class="field-label">Last Name</span>
+            <span class="field-label">اسم العائلة</span>
             <input class="field-input" type="text" name="lastName" id="lastName" autocomplete="family-name" required />
           </label>
           <label class="field">
-            <span class="field-label">Number</span>
+            <span class="field-label">رقم الهاتف</span>
             <input class="field-input" type="tel" name="number" id="number" autocomplete="tel" required />
           </label>
         </form>
-        <p class="field-error" id="error-details" role="alert" hidden>Fill in every field before turning the page.</p>
+        <p class="field-error" id="error-details" role="alert" hidden>يرجى تعبئة كل الحقول قبل قلب الصفحة.</p>
         <div class="page-nav">
-          <button class="btn btn-ghost" data-action="back" type="button">Back</button>
-          <button class="btn btn-primary" data-action="next" data-from="2" type="button">Next Page</button>
+          <button class="btn btn-ghost" data-action="back" type="button">رجوع</button>
+          <button class="btn btn-primary" data-action="next" data-from="2" type="button">الصفحة التالية</button>
         </div>
       </section>
 
       <!-- Step 3: Phrase -->
-      <section class="page" data-step="3" aria-label="Your phrase">
-        <p class="page-label">Page 02 &mdash; The Dedication</p>
-        <h2 class="page-title">Write a phrase for the opening page.</h2>
+      <section class="page" data-step="3" aria-label="عبارتك">
+        <p class="page-label">الصفحة ٢ — الإهداء</p>
+        <h2 class="page-title">اكتب عبارةً لصفحة الافتتاح.</h2>
+        <div class="divider" aria-hidden="true"></div>
         <div class="phrase-box">
-          <textarea class="phrase-input" id="phrase" maxlength="220" placeholder="Say something worth binding into paper&hellip;" required></textarea>
+          <textarea class="phrase-input" id="phrase" maxlength="220" placeholder="اكتب شيئًا يستحق أن يُخلَّد على الورق…" required></textarea>
         </div>
-        <p class="phrase-byline">&mdash; <span id="phraseByName">your first name</span></p>
-        <p class="field-error" id="error-phrase" role="alert" hidden>The dedication can't be empty.</p>
+        <p class="phrase-byline">— <span id="phraseByName">اسمك الأول</span></p>
+        <p class="field-error" id="error-phrase" role="alert" hidden>لا يمكن أن يكون الإهداء فارغًا.</p>
         <div class="page-nav">
-          <button class="btn btn-ghost" data-action="back" type="button">Back</button>
-          <button class="btn btn-primary" data-action="next" data-from="3" type="button">Next Page</button>
+          <button class="btn btn-ghost" data-action="back" type="button">رجوع</button>
+          <button class="btn btn-primary" data-action="next" data-from="3" type="button">الصفحة التالية</button>
         </div>
       </section>
 
       <!-- Step 4: Picture -->
-      <section class="page" data-step="4" aria-label="Choose a plate">
-        <p class="page-label">Page 03 &mdash; The Illustration</p>
-        <h2 class="page-title">Choose the plate for your cover.</h2>
-        <div class="plate-grid" id="plateGrid" role="listbox" aria-label="Illustration choices">
+      <section class="page" data-step="4" aria-label="اختيار الرسم">
+        <p class="page-label">الصفحة ٣ — الرسم</p>
+        <h2 class="page-title">اختر رسمًا لغلاف كتابك.</h2>
+        <div class="plate-grid" id="plateGrid" role="listbox" aria-label="خيارات الرسوم">
 
-          <button class="plate-option" type="button" data-picture="mountains" role="option" aria-selected="false">
+          <button class="plate-option" type="button" data-picture="desert" role="option" aria-selected="false">
             <svg viewBox="0 0 120 90" class="plate-art" aria-hidden="true">
               <rect x="0" y="0" width="120" height="90" class="plate-bg"/>
-              <circle cx="94" cy="22" r="9" class="ink-fill"/>
-              <path d="M0 78 L28 40 L44 60 L62 30 L92 78 Z" class="ink-stroke"/>
-              <path d="M62 30 L74 48 L50 48 Z" class="paper-fill"/>
-              <line x1="10" y1="82" x2="110" y2="82" class="ink-stroke thin"/>
+              <circle cx="94" cy="20" r="8" class="ink-fill"/>
+              <path d="M0 66 Q22 42 44 58 T88 52 T120 60 L120 90 L0 90 Z" class="ink-stroke"/>
+              <path d="M0 74 Q26 58 52 70 T104 66 T120 70 L120 90 L0 90 Z" class="ink-stroke thin"/>
             </svg>
-            <span class="plate-name">Mountains</span>
+            <span class="plate-name">الصحراء</span>
           </button>
 
-          <button class="plate-option" type="button" data-picture="ocean" role="option" aria-selected="false">
+          <button class="plate-option" type="button" data-picture="sea" role="option" aria-selected="false">
             <svg viewBox="0 0 120 90" class="plate-art" aria-hidden="true">
               <rect x="0" y="0" width="120" height="90" class="plate-bg"/>
-              <path d="M70 20 L70 55 L92 55 Z" class="ink-stroke"/>
-              <line x1="70" y1="16" x2="70" y2="55" class="ink-stroke thin"/>
-              <path d="M18 55 Q28 48 38 55 T58 55 T78 55 T98 55" class="ink-stroke thin"/>
-              <path d="M14 66 Q26 58 38 66 T62 66 T86 66 T106 66" class="ink-stroke thin"/>
-              <path d="M10 77 Q22 69 34 77 T58 77 T82 77 T106 77" class="ink-stroke thin"/>
+              <path d="M58 22 L58 52" class="ink-stroke thin"/>
+              <path d="M58 24 Q78 30 84 50 Q70 46 58 46 Z" class="ink-stroke"/>
+              <path d="M40 52 Q58 44 76 52 Q68 60 50 60 Q42 58 40 52 Z" class="paper-fill"/>
+              <path d="M14 58 Q26 51 38 58 T62 58 T86 58 T108 58" class="ink-stroke thin"/>
+              <path d="M10 68 Q22 60 34 68 T58 68 T82 68 T108 68" class="ink-stroke thin"/>
+              <path d="M8 78 Q20 70 32 78 T56 78 T80 78 T108 78" class="ink-stroke thin"/>
             </svg>
-            <span class="plate-name">Ocean</span>
+            <span class="plate-name">البحر</span>
           </button>
 
-          <button class="plate-option" type="button" data-picture="forest" role="option" aria-selected="false">
+          <button class="plate-option" type="button" data-picture="oasis" role="option" aria-selected="false">
             <svg viewBox="0 0 120 90" class="plate-art" aria-hidden="true">
               <rect x="0" y="0" width="120" height="90" class="plate-bg"/>
               <g class="ink-stroke">
-                <path d="M22 70 L22 78 M22 40 L12 58 L32 58 Z M22 26 L14 42 L30 42 Z"/>
-                <path d="M60 74 L60 82 M60 34 L46 58 L74 58 Z M60 16 L48 38 L72 38 Z"/>
-                <path d="M96 70 L96 78 M96 44 L86 60 L106 60 Z"/>
+                <path d="M28 78 Q26 60 30 46"/>
+                <path d="M30 46 C22 32 10 30 4 42 M30 46 C24 30 18 24 16 36 M30 46 C28 28 32 22 30 34 M30 46 C36 30 42 24 44 36 M30 46 C38 32 50 30 56 42"/>
               </g>
-              <line x1="8" y1="82" x2="112" y2="82" class="ink-stroke thin"/>
+              <g class="ink-stroke">
+                <path d="M70 78 Q69 54 74 34"/>
+                <path d="M74 34 C66 20 54 18 48 30 M74 34 C68 18 62 12 60 24 M74 34 C72 16 76 10 74 22 M74 34 C80 18 86 12 88 24 M74 34 C82 20 94 18 100 30"/>
+              </g>
+              <g class="ink-stroke">
+                <path d="M86 78 Q84 62 90 48"/>
+                <path d="M90 48 C82 34 70 32 64 44 M90 48 C84 32 78 26 76 38 M90 48 C88 30 92 24 90 36 M90 48 C96 32 102 26 104 38 M90 48 C98 34 110 32 116 44"/>
+              </g>
+              <line x1="6" y1="80" x2="114" y2="80" class="ink-stroke thin"/>
             </svg>
-            <span class="plate-name">Forest</span>
+            <span class="plate-name">الواحة</span>
           </button>
 
           <button class="plate-option" type="button" data-picture="night" role="option" aria-selected="false">
@@ -131,34 +141,34 @@
               </g>
               <line x1="8" y1="82" x2="112" y2="82" class="ink-stroke thin"/>
             </svg>
-            <span class="plate-name">Night Sky</span>
+            <span class="plate-name">السماء الليلية</span>
           </button>
 
         </div>
-        <p class="field-error" id="error-plate" role="alert" hidden>Choose one illustration to continue.</p>
+        <p class="field-error" id="error-plate" role="alert" hidden>اختر رسمًا واحدًا للمتابعة.</p>
         <div class="page-nav">
-          <button class="btn btn-ghost" data-action="back" type="button">Back</button>
-          <button class="btn btn-primary" data-action="next" data-from="4" type="button">Bind the Book</button>
+          <button class="btn btn-ghost" data-action="back" type="button">رجوع</button>
+          <button class="btn btn-primary" data-action="next" data-from="4" type="button">تجليد الكتاب</button>
         </div>
       </section>
 
       <!-- Step 5: Result -->
-      <section class="page result-page" data-step="5" aria-label="Your finished page">
+      <section class="page result-page" data-step="5" aria-label="صفحتك النهائية">
         <div class="spread">
-          <div class="leaf leaf-left">
-            <p class="chapter-mark">Chapter I</p>
+          <div class="leaf leaf-art">
+            <p class="chapter-mark">الفصل الأول</p>
             <div class="framed-art" id="resultArt"></div>
-            <p class="catalog">No. <span id="resultNumber"></span></p>
+            <p class="catalog">رقم النسخة: <span id="resultNumber"></span></p>
           </div>
           <div class="gutter" aria-hidden="true"></div>
-          <div class="leaf leaf-right">
-            <h2 class="result-title">The Book of <span id="resultFirstName"></span></h2>
-            <p class="result-phrase">&ldquo;<span id="resultPhrase"></span>&rdquo;</p>
-            <p class="result-signature">&mdash; <span id="resultFullName"></span></p>
+          <div class="leaf leaf-text">
+            <h2 class="result-title">كتاب <span id="resultFirstName"></span></h2>
+            <p class="result-phrase">«<span id="resultPhrase"></span>»</p>
+            <p class="result-signature">— <span id="resultFullName"></span></p>
           </div>
         </div>
         <div class="page-nav result-nav">
-          <button class="btn btn-ghost" data-action="restart" type="button">Close the Book</button>
+          <button class="btn btn-ghost" data-action="restart" type="button">إغلاق الكتاب</button>
         </div>
       </section>
 

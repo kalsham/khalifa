@@ -75,10 +75,15 @@
     return Boolean(state.picture);
   }
 
+  const EASTERN_DIGITS = "٠١٢٣٤٥٦٧٨٩";
+  function toEasternDigits(str) {
+    return str.replace(/[0-9]/g, (d) => EASTERN_DIGITS[Number(d)]);
+  }
+
   document.getElementById("firstName").addEventListener("input", () => {
     const byName = document.getElementById("phraseByName");
     const val = document.getElementById("firstName").value.trim();
-    byName.textContent = val || "your first name";
+    byName.textContent = val || "اسمك الأول";
   });
 
   document.querySelectorAll(".plate-option").forEach((btn) => {
@@ -126,7 +131,7 @@
       document.getElementById("form-details").reset();
       document.getElementById("phrase").value = "";
       document.querySelectorAll(".plate-option").forEach((b) => b.setAttribute("aria-selected", "false"));
-      document.getElementById("phraseByName").textContent = "your first name";
+      document.getElementById("phraseByName").textContent = "اسمك الأول";
       state.firstName = state.secondName = state.lastName = state.number = state.phrase = state.picture = "";
       goToStep(1);
     }
@@ -137,7 +142,7 @@
     document.getElementById("resultPhrase").textContent = state.phrase;
     document.getElementById("resultFullName").textContent =
       `${state.firstName} ${state.secondName} ${state.lastName}`.replace(/\s+/g, " ").trim();
-    document.getElementById("resultNumber").textContent = state.number;
+    document.getElementById("resultNumber").textContent = toEasternDigits(state.number);
 
     const source = document.querySelector(`.plate-option[data-picture="${state.picture}"] svg`);
     const artHost = document.getElementById("resultArt");
