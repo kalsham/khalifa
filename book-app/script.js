@@ -2,7 +2,13 @@
   const pagesEl = document.getElementById("pages");
   const ribbonEl = document.getElementById("ribbon");
   const pages = Array.from(document.querySelectorAll(".page"));
-  const totalSteps = pages.length;
+  const numericSteps = pages
+    .map((p) => Number(p.dataset.step))
+    .filter((n) => !Number.isNaN(n));
+  const totalSteps = numericSteps.length;
+
+  const STORAGE_KEY = "kiosk-book-entries";
+  const IDLE_MS = 120000;
 
   const state = {
     firstName: "",
@@ -13,20 +19,47 @@
     picture: "",
   };
 
+  let entries = loadEntries();
+  let browseIndex = 0;
   let currentStep = 1;
+  let idleTimer = null;
+
+  function loadEntries() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      const parsed = raw ? JSON.parse(raw) : [];
+      return Array.isArray(parsed) ? parsed : [];
+    } catch (e) {
+      return [];
+    }
+  }
+
+  function saveEntries() {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(entries));
+    } catch (e) {
+      /* storage unavailable; the session's own view still works */
+    }
+  }
 
   function pageByStep(step) {
-    return pages.find((p) => Number(p.dataset.step) === step);
+    return pages.find((p) => p.dataset.step === String(step));
   }
 
   function setRibbon(step) {
+    if (typeof step !== "number") return;
     const progress = ((step - 1) / (totalSteps - 1)) * 100;
     ribbonEl.style.setProperty("--progress", progress);
   }
 
+  function computeDir(current, next) {
+    if (current === "browse" || next === "browse") return 1;
+    return next > current ? 1 : -1;
+  }
+
   function goToStep(nextStep) {
     if (nextStep === currentStep) return;
-    const dir = nextStep > currentStep ? 1 : -1;
+    const dir = computeDir(currentStep, nextStep);
     pagesEl.style.setProperty("--dir", dir);
 
     const currentEl = pageByStep(currentStep);
@@ -48,9 +81,10 @@
     }, 680);
 
     currentStep = nextStep;
-    setRibbon(nextStep);
+    setRibbon(typeof nextStep === "number" ? nextStep : null);
 
     if (nextStep === 5) renderResult();
+    resetIdleTimer();
   }
 
   function showError(id, show) {
@@ -77,8 +111,95 @@
 
   const EASTERN_DIGITS = "٠١٢٣٤٥٦٧٨٩";
   function toEasternDigits(str) {
-    return str.replace(/[0-9]/g, (d) => EASTERN_DIGITS[Number(d)]);
+    return String(str).replace(/[0-9]/g, (d) => EASTERN_DIGITS[Number(d)]);
   }
+
+  function resetGuestState() {
+    document.getElementById("form-details").reset();
+    document.getElementById("phrase").value = "";
+    document.querySelectorAll(".plate-option").forEach((b) => b.setAttribute("aria-selected", "false"));
+    document.getElementById("phraseByName").textContent = "اسمك الأول";
+    state.firstName = state.secondName = state.lastName = state.number = state.phrase = state.picture = "";
+  }
+
+  function showToast(message, duration) {
+    const el = document.getElementById("toast");
+    el.textContent = message;
+    el.hidden = false;
+    window.clearTimeout(showToast._t);
+    showToast._t = window.setTimeout(() => {
+      el.hidden = true;
+    }, duration || 3500);
+  }
+
+  function renderBookStats() {
+    const statsEl = document.getElementById("bookStats");
+    const browseBtn = document.getElementById("browseOpenBtn");
+    if (entries.length > 0) {
+      statsEl.textContent = `يضمّ الكتاب حتى الآن ${toEasternDigits(entries.length)} صفحة.`;
+      statsEl.hidden = false;
+      browseBtn.hidden = false;
+    } else {
+      statsEl.hidden = true;
+      browseBtn.hidden = true;
+    }
+  }
+
+  function renderResult() {
+    document.getElementById("resultFirstName").textContent = state.firstName;
+    document.getElementById("resultPhrase").textContent = state.phrase;
+    document.getElementById("resultFullName").textContent =
+      `${state.firstName} ${state.secondName} ${state.lastName}`.replace(/\s+/g, " ").trim();
+    document.getElementById("resultNumber").textContent = toEasternDigits(state.number);
+
+    const source = document.querySelector(`.plate-option[data-picture="${state.picture}"] svg`);
+    const artHost = document.getElementById("resultArt");
+    artHost.innerHTML = "";
+    if (source) {
+      artHost.appendChild(source.cloneNode(true));
+    }
+  }
+
+  function renderBrowsePage() {
+    if (entries.length === 0) return;
+    const entry = entries[browseIndex];
+    document.getElementById("browseChapter").textContent = `الفصل رقم ${toEasternDigits(browseIndex + 1)}`;
+    document.getElementById("browseFirstName").textContent = entry.firstName;
+    document.getElementById("browsePhrase").textContent = entry.phrase;
+    document.getElementById("browseFullName").textContent =
+      `${entry.firstName} ${entry.secondName} ${entry.lastName}`.replace(/\s+/g, " ").trim();
+    document.getElementById("browseCounter").textContent =
+      `الصفحة ${toEasternDigits(browseIndex + 1)} من ${toEasternDigits(entries.length)}`;
+
+    const source = document.querySelector(`.plate-option[data-picture="${entry.picture}"] svg`);
+    const artHost = document.getElementById("browseArt");
+    artHost.innerHTML = "";
+    if (source) {
+      artHost.appendChild(source.cloneNode(true));
+    }
+
+    const prevBtn = document.querySelector('[data-action="browse-prev"]');
+    const nextBtn = document.querySelector('[data-action="browse-next"]');
+    prevBtn.disabled = browseIndex === 0;
+    nextBtn.disabled = browseIndex >= entries.length - 1;
+  }
+
+  function resetIdleTimer() {
+    if (idleTimer) window.clearTimeout(idleTimer);
+    if (currentStep === 1) return;
+    idleTimer = window.setTimeout(() => {
+      if (currentStep === "browse") {
+        goToStep(1);
+      } else {
+        resetGuestState();
+        goToStep(1);
+      }
+    }, IDLE_MS);
+  }
+
+  ["click", "keydown", "input", "touchstart"].forEach((evt) => {
+    document.addEventListener(evt, resetIdleTimer, { passive: true });
+  });
 
   document.getElementById("firstName").addEventListener("input", () => {
     const byName = document.getElementById("phraseByName");
@@ -127,30 +248,51 @@
         }
         goToStep(5);
       }
-    } else if (action === "restart") {
-      document.getElementById("form-details").reset();
-      document.getElementById("phrase").value = "";
-      document.querySelectorAll(".plate-option").forEach((b) => b.setAttribute("aria-selected", "false"));
-      document.getElementById("phraseByName").textContent = "اسمك الأول";
-      state.firstName = state.secondName = state.lastName = state.number = state.phrase = state.picture = "";
+    } else if (action === "redo") {
+      resetGuestState();
       goToStep(1);
+    } else if (action === "commit") {
+      const redoBtn = document.querySelector('.page[data-step="5"] [data-action="redo"]');
+      target.disabled = true;
+      if (redoBtn) redoBtn.disabled = true;
+
+      entries.push({
+        firstName: state.firstName,
+        secondName: state.secondName,
+        lastName: state.lastName,
+        phrase: state.phrase,
+        picture: state.picture,
+      });
+      saveEntries();
+      renderBookStats();
+      showToast(`أُضيفت صفحتك! هي الصفحة رقم ${toEasternDigits(entries.length)} في الكتاب.`);
+
+      window.setTimeout(() => {
+        target.disabled = false;
+        if (redoBtn) redoBtn.disabled = false;
+        resetGuestState();
+        goToStep(1);
+      }, 3500);
+    } else if (action === "browse-open") {
+      if (entries.length === 0) return;
+      browseIndex = 0;
+      renderBrowsePage();
+      goToStep("browse");
+    } else if (action === "browse-home") {
+      goToStep(1);
+    } else if (action === "browse-next") {
+      if (browseIndex < entries.length - 1) {
+        browseIndex += 1;
+        renderBrowsePage();
+      }
+    } else if (action === "browse-prev") {
+      if (browseIndex > 0) {
+        browseIndex -= 1;
+        renderBrowsePage();
+      }
     }
   });
 
-  function renderResult() {
-    document.getElementById("resultFirstName").textContent = state.firstName;
-    document.getElementById("resultPhrase").textContent = state.phrase;
-    document.getElementById("resultFullName").textContent =
-      `${state.firstName} ${state.secondName} ${state.lastName}`.replace(/\s+/g, " ").trim();
-    document.getElementById("resultNumber").textContent = toEasternDigits(state.number);
-
-    const source = document.querySelector(`.plate-option[data-picture="${state.picture}"] svg`);
-    const artHost = document.getElementById("resultArt");
-    artHost.innerHTML = "";
-    if (source) {
-      artHost.appendChild(source.cloneNode(true));
-    }
-  }
-
   setRibbon(1);
+  renderBookStats();
 })();
