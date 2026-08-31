@@ -5,10 +5,12 @@
   --cloth-light: #7a2432;
   --gold: #b8863b;
   --gold-bright: #e3bf6f;
-  --paper: #ecdcb8;
-  --paper-alt: #e2cd9d;
-  --paper-shadow: #c9a86a;
-  --paper-shadow-2: #b9975a;
+  --paper: #e6cd9e;
+  --paper-alt: #d9b87f;
+  --paper-shadow: #b3843f;
+  --paper-shadow-2: #a06b35;
+  --rust: #9c5528;
+  --rust-soft: #b8712f;
   --ink: #3b2a18;
   --ink-soft: #7a6248;
   --ribbon: #1f6e63;
@@ -172,16 +174,21 @@ button {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  opacity: 0.65;
+  opacity: 0.9;
   mix-blend-mode: multiply;
   background-image:
-    radial-gradient(circle at 14% 16%, rgba(139, 107, 58, 0.22) 0%, transparent 7%),
-    radial-gradient(circle at 84% 10%, rgba(139, 107, 58, 0.16) 0%, transparent 6%),
-    radial-gradient(circle at 72% 88%, rgba(120, 90, 50, 0.2) 0%, transparent 8%),
-    radial-gradient(circle at 22% 94%, rgba(139, 107, 58, 0.15) 0%, transparent 6%),
-    radial-gradient(circle at 46% 58%, rgba(139, 107, 58, 0.08) 0%, transparent 12%),
-    radial-gradient(ellipse at 50% 0%, rgba(0, 0, 0, 0.06) 0%, transparent 55%),
-    radial-gradient(ellipse at 50% 100%, rgba(0, 0, 0, 0.06) 0%, transparent 55%);
+    radial-gradient(circle at 8% 10%, rgba(156, 85, 40, 0.4) 0%, transparent 22%),
+    radial-gradient(circle at 90% 6%, rgba(184, 113, 47, 0.32) 0%, transparent 20%),
+    radial-gradient(circle at 78% 28%, rgba(156, 85, 40, 0.26) 0%, transparent 24%),
+    radial-gradient(circle at 15% 40%, rgba(184, 113, 47, 0.3) 0%, transparent 26%),
+    radial-gradient(circle at 55% 55%, rgba(156, 85, 40, 0.22) 0%, transparent 30%),
+    radial-gradient(circle at 92% 62%, rgba(184, 113, 47, 0.3) 0%, transparent 22%),
+    radial-gradient(circle at 35% 78%, rgba(156, 85, 40, 0.3) 0%, transparent 26%),
+    radial-gradient(circle at 6% 90%, rgba(184, 113, 47, 0.34) 0%, transparent 22%),
+    radial-gradient(circle at 68% 92%, rgba(156, 85, 40, 0.28) 0%, transparent 20%),
+    radial-gradient(ellipse at 50% 50%, rgba(156, 85, 40, 0.18) 0%, transparent 75%),
+    radial-gradient(ellipse at 50% 0%, rgba(80, 40, 15, 0.14) 0%, transparent 60%),
+    radial-gradient(ellipse at 50% 100%, rgba(80, 40, 15, 0.14) 0%, transparent 60%);
 }
 
 .page::after {
