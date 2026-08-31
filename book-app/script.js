@@ -1,11 +1,6 @@
 (() => {
   const pagesEl = document.getElementById("pages");
-  const ribbonEl = document.getElementById("ribbon");
   const pages = Array.from(document.querySelectorAll(".page"));
-  const numericSteps = pages
-    .map((p) => Number(p.dataset.step))
-    .filter((n) => !Number.isNaN(n));
-  const totalSteps = numericSteps.length;
 
   const STORAGE_KEY = "kiosk-book-entries";
   const IDLE_MS = 120000;
@@ -137,12 +132,6 @@
     return pages.find((p) => p.dataset.step === String(step));
   }
 
-  function setRibbon(step) {
-    if (typeof step !== "number") return;
-    const progress = ((step - 1) / (totalSteps - 1)) * 100;
-    ribbonEl.style.setProperty("--progress", progress);
-  }
-
   function computeDir(current, next) {
     if (current === "browse" || next === "browse") return 1;
     return next > current ? 1 : -1;
@@ -172,7 +161,6 @@
     }, 680);
 
     currentStep = nextStep;
-    setRibbon(typeof nextStep === "number" ? nextStep : null);
 
     if (nextStep === 5) renderResult();
     resetIdleTimer();
@@ -387,6 +375,5 @@
     }
   });
 
-  setRibbon(1);
   renderBookStats();
 })();
