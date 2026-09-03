@@ -1,20 +1,23 @@
 /* ---------- Tokens ---------- */
 :root {
-  --cloth: #5c1620;
-  --cloth-dark: #34090f;
-  --cloth-light: #7a2432;
-  --gold: #b8863b;
-  --gold-bright: #e3bf6f;
-  --paper: #e6cd9e;
-  --paper-alt: #d9b87f;
-  --paper-shadow: #b3843f;
-  --paper-shadow-2: #a06b35;
-  --rust: #9c5528;
-  --rust-soft: #b8712f;
-  --char: #1c120a;
-  --char-soft: #2e1c10;
-  --ink: #3b2a18;
-  --ink-soft: #7a6248;
+  --leather: #efe6d0;
+  --leather-dark: #c9a96a;
+  --leather-light: #fffdf6;
+  --gold: #a97e2f;
+  --gold-bright: #e6c374;
+  --paper: #faf6ec;
+  --paper-alt: #f2ead4;
+  --paper-shadow: #ddc998;
+  --paper-shadow-2: #c7ac6f;
+  --accent: #1c1914;
+  --accent-dark: #0a0908;
+  --error: #8a2432;
+  --ink: #2a2620;
+  --ink-soft: #7d735e;
+
+  --stage-glow: #2a241a;
+  --stage-mid: #16130e;
+  --stage-dark: #0a0805;
 
   --font-display: "Aref Ruqaa", serif;
   --font-body: "Amiri", serif;
@@ -28,7 +31,7 @@ html, body {
   margin: 0;
   color: var(--ink);
   font-family: var(--font-body);
-  background: var(--cloth-dark);
+  background: var(--stage-dark);
 }
 
 body {
@@ -45,7 +48,7 @@ button {
   inset: 0;
   z-index: -2;
   background:
-    radial-gradient(ellipse at 50% 20%, var(--cloth-light) 0%, var(--cloth) 45%, var(--cloth-dark) 100%);
+    radial-gradient(ellipse at 50% 20%, var(--stage-glow) 0%, var(--stage-mid) 45%, var(--stage-dark) 100%);
 }
 
 .grain {
@@ -78,7 +81,7 @@ button {
     0 2px 0 2px var(--paper-shadow),
     0 4px 0 4px var(--paper),
     0 6px 0 6px var(--paper-shadow-2),
-    0 8px 0 8px var(--char-soft),
+    0 8px 0 8px var(--leather-dark),
     0 34px 60px -15px rgba(0, 0, 0, 0.7),
     0 14px 26px -8px rgba(0, 0, 0, 0.55);
   padding-right: 34px;
@@ -91,7 +94,7 @@ button {
   bottom: 0;
   width: 30px;
   height: 30px;
-  background: linear-gradient(135deg, transparent 50%, var(--char-soft) 50%);
+  background: linear-gradient(135deg, transparent 50%, var(--paper-shadow-2) 50%);
   border-radius: 0 0 0 8px;
   box-shadow: -1px -2px 5px rgba(0, 0, 0, 0.2);
   z-index: 4;
@@ -103,9 +106,9 @@ button {
   top: -6px;
   bottom: -6px;
   width: 34px;
-  background: linear-gradient(90deg, var(--cloth-dark), var(--cloth) 40%, var(--cloth-light) 60%, var(--cloth-dark));
+  background: linear-gradient(90deg, var(--leather-dark), var(--leather) 40%, var(--leather-light) 60%, var(--leather-dark));
   border-radius: 0 8px 8px 0;
-  box-shadow: inset 3px 0 6px rgba(0, 0, 0, 0.4), 0 20px 40px rgba(0, 0, 0, 0.5);
+  box-shadow: inset 3px 0 6px rgba(0, 0, 0, 0.15), 0 20px 40px rgba(0, 0, 0, 0.35);
 }
 
 .spine::before,
@@ -120,6 +123,52 @@ button {
 }
 .spine::before { top: 18%; }
 .spine::after { bottom: 18%; }
+
+/* ---------- Jubilee emblem ---------- */
+.jubilee-badge {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  z-index: 5;
+  pointer-events: none;
+  filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.3));
+}
+
+.jubilee-badge svg {
+  width: 82px;
+  height: 60px;
+  display: block;
+}
+
+.jubilee-ring-outer {
+  fill: none;
+  stroke: var(--gold);
+  stroke-width: 2.5;
+}
+
+.jubilee-fill {
+  fill: var(--paper);
+}
+
+.jubilee-ring-inner {
+  fill: none;
+  stroke: var(--gold);
+  stroke-width: 1;
+  opacity: 0.75;
+}
+
+.jubilee-number {
+  font-family: var(--font-display);
+  font-weight: 700;
+  fill: var(--accent);
+}
+
+.jubilee-caption {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  fill: var(--gold);
+  letter-spacing: 0.01em;
+}
 
 /* ---------- Pages ---------- */
 .pages {
@@ -161,26 +210,10 @@ button {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  opacity: 0.9;
+  opacity: 0.6;
   mix-blend-mode: multiply;
   background-image:
-    radial-gradient(circle at 8% 10%, rgba(156, 85, 40, 0.4) 0%, transparent 22%),
-    radial-gradient(circle at 90% 6%, rgba(184, 113, 47, 0.32) 0%, transparent 20%),
-    radial-gradient(circle at 78% 28%, rgba(156, 85, 40, 0.26) 0%, transparent 24%),
-    radial-gradient(circle at 15% 40%, rgba(184, 113, 47, 0.3) 0%, transparent 26%),
-    radial-gradient(circle at 55% 55%, rgba(156, 85, 40, 0.22) 0%, transparent 30%),
-    radial-gradient(circle at 92% 62%, rgba(184, 113, 47, 0.3) 0%, transparent 22%),
-    radial-gradient(circle at 35% 78%, rgba(156, 85, 40, 0.3) 0%, transparent 26%),
-    radial-gradient(circle at 6% 90%, rgba(184, 113, 47, 0.34) 0%, transparent 22%),
-    radial-gradient(circle at 68% 92%, rgba(156, 85, 40, 0.28) 0%, transparent 20%),
-    radial-gradient(circle 110px at 12% 0%, rgba(15, 9, 4, 0.32), transparent 100%),
-    radial-gradient(circle 90px at 58% 2%, rgba(15, 9, 4, 0.24), transparent 100%),
-    radial-gradient(circle 100px at 100% 32%, rgba(15, 9, 4, 0.3), transparent 100%),
-    radial-gradient(circle 90px at 98% 72%, rgba(15, 9, 4, 0.24), transparent 100%),
-    radial-gradient(circle 110px at 62% 100%, rgba(15, 9, 4, 0.32), transparent 100%),
-    radial-gradient(circle 90px at 18% 98%, rgba(15, 9, 4, 0.24), transparent 100%),
-    radial-gradient(circle 95px at 0% 62%, rgba(15, 9, 4, 0.28), transparent 100%),
-    radial-gradient(ellipse at center, transparent 54%, rgba(18, 11, 5, 0.8) 100%);
+    radial-gradient(ellipse at center, transparent 68%, rgba(140, 115, 65, 0.22) 100%);
 }
 
 .page::after {
@@ -188,7 +221,13 @@ button {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background: linear-gradient(270deg, rgba(0, 0, 0, 0.08), transparent 6%);
+  opacity: 0.3;
+  mix-blend-mode: multiply;
+  background-image:
+    linear-gradient(270deg, rgba(0, 0, 0, 0.08), transparent 6%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch' result='n'/%3E%3CfeColorMatrix in='n' type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+  background-size: 100% 100%, 220px 220px;
+  background-repeat: no-repeat, repeat;
 }
 
 /* ---------- Shared type ---------- */
@@ -226,7 +265,7 @@ button {
 .field-error {
   font-family: var(--font-mono);
   font-size: 13px;
-  color: var(--cloth);
+  color: var(--error);
   margin: 6px 0 0;
 }
 
@@ -248,20 +287,20 @@ button {
 }
 
 .btn-primary {
-  background: var(--cloth);
+  background: var(--accent);
   color: var(--gold-bright);
-  border-color: var(--cloth-dark);
-  box-shadow: 0 4px 0 var(--cloth-dark), 0 8px 16px rgba(0, 0, 0, 0.25);
+  border-color: var(--accent-dark);
+  box-shadow: 0 4px 0 var(--accent-dark), 0 8px 16px rgba(0, 0, 0, 0.25);
 }
 
 .btn-primary:hover {
   transform: translateY(-1px);
-  box-shadow: 0 5px 0 var(--cloth-dark), 0 10px 18px rgba(0, 0, 0, 0.28);
+  box-shadow: 0 5px 0 var(--accent-dark), 0 10px 18px rgba(0, 0, 0, 0.28);
 }
 
 .btn-primary:active {
   transform: translateY(2px);
-  box-shadow: 0 2px 0 var(--cloth-dark);
+  box-shadow: 0 2px 0 var(--accent-dark);
 }
 
 .btn-ghost {
@@ -324,7 +363,7 @@ button {
 .book-stats {
   font-family: var(--font-mono);
   font-size: 13px;
-  color: var(--cloth);
+  color: var(--gold);
   margin: 0 0 28px;
 }
 
@@ -377,7 +416,7 @@ button {
 
 .field-input:focus {
   outline: none;
-  border-bottom-color: var(--cloth);
+  border-bottom-color: var(--gold);
 }
 
 /* ---------- Phrase ---------- */
@@ -467,7 +506,7 @@ button {
 
 .plate-option[aria-selected="true"] {
   border-color: var(--gold);
-  box-shadow: 0 0 0 3px rgba(184, 134, 59, 0.3);
+  box-shadow: 0 0 0 3px rgba(169, 126, 47, 0.3);
 }
 
 .plate-bg { fill: var(--paper); }
@@ -569,7 +608,7 @@ button {
   right: 0;
   font-family: var(--font-display);
   font-size: 2.2em;
-  color: var(--cloth);
+  color: var(--gold);
   line-height: 1;
 }
 
@@ -580,7 +619,7 @@ button {
   left: 0;
   font-family: var(--font-display);
   font-size: 2.2em;
-  color: var(--cloth);
+  color: var(--gold);
   line-height: 1;
 }
 
@@ -627,7 +666,7 @@ button {
   bottom: 36px;
   transform: translateX(-50%);
   z-index: 10;
-  background: var(--cloth);
+  background: var(--accent);
   color: var(--gold-bright);
   font-family: var(--font-mono);
   font-size: 14px;
@@ -643,6 +682,14 @@ button {
   .book {
     height: min(680px, 86vh);
     padding-right: 24px;
+  }
+  .jubilee-badge {
+    top: 10px;
+    left: 10px;
+  }
+  .jubilee-badge svg {
+    width: 62px;
+    height: 46px;
   }
   .page {
     padding: 44px 26px 30px 52px;
