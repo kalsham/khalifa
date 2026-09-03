@@ -158,9 +158,10 @@ button {
 }
 
 .jubilee-number {
-  font-family: var(--font-display);
+  font-family: Georgia, "Times New Roman", serif;
   font-weight: 700;
   fill: var(--accent);
+  font-variant-numeric: lining-nums;
 }
 
 .jubilee-caption {
