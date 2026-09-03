@@ -11,83 +11,86 @@
 </head>
 <body>
 
-<div class="library"></div>
-<div class="grain"></div>
-
 <div class="stage">
-  <div class="book" id="book">
-    <div class="spine"></div>
+  <div class="frame" id="frame">
 
     <div class="pages" id="pages" style="--dir: 1">
 
       <!-- Step 1: Cover -->
       <section class="page cover-page active" data-step="1" aria-label="الغلاف">
-        <div class="plate">نسخة اليوم</div>
-        <h1 class="cover-title">كتابٌ<br />خاص بك</h1>
-        <div class="divider" aria-hidden="true"></div>
-        <p class="cover-sub">صفحة واحدة تُضاف إلى كتاب نبنيه معًا، صفحةً صفحة.</p>
-        <p class="book-stats" id="bookStats" hidden></p>
-        <div class="cover-actions">
-          <button class="btn btn-primary btn-start" data-action="start" type="button">ابدأ</button>
-          <button class="btn btn-ghost" data-action="browse-open" id="browseOpenBtn" type="button" hidden>تصفح الكتاب</button>
+        <div class="page-inner">
+          <div class="plate">نسخة اليوم</div>
+          <h1 class="cover-title">كتابٌ<br />خاص بك</h1>
+          <div class="divider" aria-hidden="true"></div>
+          <p class="cover-sub">صفحة واحدة تُضاف إلى كتاب نبنيه معًا، صفحةً صفحة.</p>
+          <p class="book-stats" id="bookStats" hidden></p>
+          <div class="cover-actions">
+            <button class="btn btn-primary btn-start" data-action="start" type="button">ابدأ</button>
+            <button class="btn btn-ghost" data-action="browse-open" id="browseOpenBtn" type="button" hidden>تصفح الكتاب</button>
+          </div>
         </div>
       </section>
 
       <!-- Step 2: Details -->
       <section class="page" data-step="2" aria-label="بياناتك">
-        <p class="page-label">الصفحة ١ — بطاقة المالك</p>
-        <h2 class="page-title">لِمَن هذا الكتاب؟</h2>
-        <div class="divider" aria-hidden="true"></div>
-        <form class="form-grid" id="form-details" novalidate>
-          <label class="field">
-            <span class="field-label">الاسم الأول</span>
-            <input class="field-input" type="text" name="firstName" id="firstName" autocomplete="given-name" required />
-          </label>
-          <label class="field">
-            <span class="field-label">الاسم الثاني</span>
-            <input class="field-input" type="text" name="secondName" id="secondName" autocomplete="additional-name" required />
-          </label>
-          <label class="field">
-            <span class="field-label">اسم العائلة</span>
-            <input class="field-input" type="text" name="lastName" id="lastName" autocomplete="family-name" required />
-          </label>
-          <label class="field">
-            <span class="field-label">رقم الهاتف</span>
-            <input class="field-input" type="tel" name="number" id="number" autocomplete="tel" required />
-          </label>
-        </form>
-        <p class="field-error" id="error-details" role="alert" hidden>يرجى تعبئة كل الحقول قبل قلب الصفحة.</p>
-        <div class="page-nav">
-          <button class="btn btn-ghost" data-action="back" type="button">رجوع</button>
-          <button class="btn btn-primary" data-action="next" data-from="2" type="button">الصفحة التالية</button>
+        <div class="page-inner">
+          <p class="page-label">الصفحة ١ — بطاقة المالك</p>
+          <h2 class="page-title">لِمَن هذا الكتاب؟</h2>
+          <div class="divider" aria-hidden="true"></div>
+          <form class="form-grid" id="form-details" novalidate>
+            <label class="field">
+              <span class="field-label">الاسم الأول</span>
+              <input class="field-input" type="text" name="firstName" id="firstName" autocomplete="given-name" required />
+            </label>
+            <label class="field">
+              <span class="field-label">الاسم الثاني</span>
+              <input class="field-input" type="text" name="secondName" id="secondName" autocomplete="additional-name" required />
+            </label>
+            <label class="field">
+              <span class="field-label">اسم العائلة</span>
+              <input class="field-input" type="text" name="lastName" id="lastName" autocomplete="family-name" required />
+            </label>
+            <label class="field">
+              <span class="field-label">رقم الهاتف</span>
+              <input class="field-input" type="tel" name="number" id="number" autocomplete="tel" required />
+            </label>
+          </form>
+          <p class="field-error" id="error-details" role="alert" hidden>يرجى تعبئة كل الحقول قبل قلب الصفحة.</p>
+          <div class="page-nav">
+            <button class="btn btn-ghost" data-action="back" type="button">رجوع</button>
+            <button class="btn btn-primary" data-action="next" data-from="2" type="button">الصفحة التالية</button>
+          </div>
         </div>
       </section>
 
       <!-- Step 3: Phrase -->
       <section class="page" data-step="3" aria-label="عبارتك">
-        <p class="page-label">الصفحة ٢ — الإهداء</p>
-        <h2 class="page-title">اكتب عبارةً لصفحة الافتتاح.</h2>
-        <div class="divider" aria-hidden="true"></div>
-        <p class="phrase-hint">اكتب شيئًا يستحق أن يُخلَّد على الورق، بخط يدك.</p>
-        <div class="phrase-box">
-          <canvas class="phrase-canvas" id="phraseCanvas"></canvas>
-        </div>
-        <div class="phrase-tools">
-          <button class="btn btn-ghost btn-small" data-action="clear-phrase" type="button">امسح وأعد الكتابة</button>
-          <p class="phrase-byline">— <span id="phraseByName">اسمك الأول</span></p>
-        </div>
-        <p class="field-error" id="error-phrase" role="alert" hidden>اكتب عبارتك بالقلم قبل المتابعة.</p>
-        <div class="page-nav">
-          <button class="btn btn-ghost" data-action="back" type="button">رجوع</button>
-          <button class="btn btn-primary" data-action="next" data-from="3" type="button">الصفحة التالية</button>
+        <div class="page-inner">
+          <p class="page-label">الصفحة ٢ — الإهداء</p>
+          <h2 class="page-title">اكتب عبارةً لصفحة الافتتاح.</h2>
+          <div class="divider" aria-hidden="true"></div>
+          <p class="phrase-hint">اكتب شيئًا يستحق أن يُخلَّد على الورق، بخط يدك.</p>
+          <div class="phrase-box">
+            <canvas class="phrase-canvas" id="phraseCanvas"></canvas>
+          </div>
+          <div class="phrase-tools">
+            <button class="btn btn-ghost btn-small" data-action="clear-phrase" type="button">امسح وأعد الكتابة</button>
+            <p class="phrase-byline">— <span id="phraseByName">اسمك الأول</span></p>
+          </div>
+          <p class="field-error" id="error-phrase" role="alert" hidden>اكتب عبارتك بالقلم قبل المتابعة.</p>
+          <div class="page-nav">
+            <button class="btn btn-ghost" data-action="back" type="button">رجوع</button>
+            <button class="btn btn-primary" data-action="next" data-from="3" type="button">الصفحة التالية</button>
+          </div>
         </div>
       </section>
 
       <!-- Step 4: Picture -->
       <section class="page" data-step="4" aria-label="اختيار الرسم">
-        <p class="page-label">الصفحة ٣ — الرسم</p>
-        <h2 class="page-title">اختر رسمًا لغلاف كتابك.</h2>
-        <div class="plate-grid" id="plateGrid" role="listbox" aria-label="خيارات الرسوم">
+        <div class="page-inner page-inner-wide">
+          <p class="page-label">الصفحة ٣ — الرسم</p>
+          <h2 class="page-title">اختر رسمًا لغلاف كتابك.</h2>
+          <div class="plate-grid" id="plateGrid" role="listbox" aria-label="خيارات الرسوم">
 
           <button class="plate-option" type="button" data-picture="desert" role="option" aria-selected="false">
             <svg viewBox="0 0 120 90" class="plate-art" aria-hidden="true">
@@ -151,11 +154,12 @@
             <span class="plate-name">السماء الليلية</span>
           </button>
 
-        </div>
-        <p class="field-error" id="error-plate" role="alert" hidden>اختر رسمًا واحدًا للمتابعة.</p>
-        <div class="page-nav">
-          <button class="btn btn-ghost" data-action="back" type="button">رجوع</button>
-          <button class="btn btn-primary" data-action="next" data-from="4" type="button">تجليد الكتاب</button>
+          </div>
+          <p class="field-error" id="error-plate" role="alert" hidden>اختر رسمًا واحدًا للمتابعة.</p>
+          <div class="page-nav">
+            <button class="btn btn-ghost" data-action="back" type="button">رجوع</button>
+            <button class="btn btn-primary" data-action="next" data-from="4" type="button">تجليد الكتاب</button>
+          </div>
         </div>
       </section>
 
