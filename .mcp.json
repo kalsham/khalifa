@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "coinvest": {
+      "type": "http",
+      "url": "https://coinvest-computer.liquid.trade/mcp"
+    }
+  }
+}
