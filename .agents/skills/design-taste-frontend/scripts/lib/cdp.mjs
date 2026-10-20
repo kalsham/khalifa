@@ -84,7 +84,7 @@ export class Browser {
       '--disable-background-timer-throttling', '--disable-renderer-backgrounding',
       '--disable-backgrounding-occluded-windows', '--disable-features=Translate,MediaRouter',
       '--force-color-profile=srgb', '--autoplay-policy=no-user-gesture-required',
-      '--enable-unsafe-swiftshader', `--window-size=${width},${height}`, ...extraArgs, 'about:blank',
+      '--enable-unsafe-swiftshader', '--no-sandbox', `--window-size=${width},${height}`, ...extraArgs, 'about:blank',
     ];
     const proc = spawn(exe, args, { stdio: ['ignore', 'ignore', 'pipe'] });
     pid = proc.pid;
